@@ -39,7 +39,7 @@ class User
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $avatar_image;
 
@@ -57,6 +57,11 @@ class User
      * @ORM\OneToMany(targetEntity="App\Entity\FanArt", mappedBy="user_id")
      */
     private $fanArts;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $password;
 
     public function __construct()
     {
@@ -199,6 +204,18 @@ class User
                 $fanArt->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
