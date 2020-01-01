@@ -34,12 +34,12 @@ class User
     private $last_name;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar_image;
 
