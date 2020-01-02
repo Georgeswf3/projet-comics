@@ -43,6 +43,11 @@ class Comment
      */
     private $fan_art_id;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isConfirmed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Comment
     public function setFanArtId(?FanArt $fan_art_id): self
     {
         $this->fan_art_id = $fan_art_id;
+
+        return $this;
+    }
+
+    public function getIsConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(bool $isConfirmed): self
+    {
+        $this->isConfirmed = $isConfirmed;
 
         return $this;
     }
