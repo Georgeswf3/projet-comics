@@ -22,6 +22,10 @@ admin_home:
   path: /admin/home
   controller: App\Controller\AdminController::homeAction
 
+profile_home:
+  path: /profile/home
+  controller:App\Controller\AdminController::homeUser
+
 admin_create_articles:
   path: /admin/articles/create
   controller: App\Controller\AdminController::createArticles
@@ -49,7 +53,7 @@ admin_update_comments:
 admin_create_users:
   path: /admin/users/create
   controller: App\Controller\AdminController::createUsers
-  
+
 
 
 
