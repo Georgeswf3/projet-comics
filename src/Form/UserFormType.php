@@ -2,29 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Comment;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommentType extends AbstractType
+class UserFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment_article')
-            ->add('comment_fan_art')
-            ->add('isConfirmed')
-            ->add('user_id')
-            ->add('article_id')
-            ->add('fan_art_id')
+            ->add('email')
+            ->add('roles')
+            ->add('password')
+            ->add('pseudo')
+            ->add('first_name')
+            ->add('last_name')
+            ->add('avatar_image')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Comment::class,
+            'data_class' => User::class,
         ]);
     }
 }
