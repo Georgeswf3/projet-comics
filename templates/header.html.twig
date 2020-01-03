@@ -1,0 +1,51 @@
+{% block style %}
+    <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
+{% endblock %}
+   
+{# Header #}
+<header class="contenuHead">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="dcMarvel"></div>
+            </div>
+            <div class="col-sm-8">
+                <div class="titreComics">
+                    <span>COMICS</span>
+                </div>
+                <div class="titreFrench">
+                    <span>French fans arts</span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="user">
+                    <form>
+                        <div class="labelTitre">Viens te loguer !</div>
+                        <div class="labelLog">
+                            <input type="text" name="login" placeholder="Pseudo">
+                        </div>
+                        <div class="labelPass">
+                            <input type="password" name="pass" placeholder="Mot de passe">
+                        </div>
+                        <input class="submit" type="submit" value="Connection" name="connection">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{# Bouton Menu #}
+<div class="container">
+    <div class="row contenuBouton">
+        <div class="col-sm-4">
+            <button class="acceuil" onclick="bouton()">Accueil</button>
+        </div>
+        <div class="col-sm-4">
+            <button class="artistes" onclick="bouton2()">Artistes</button>
+        </div>
+        <div class="col-sm-4">
+            <button class="fan" onclick="bouton3()">Fan Arts</button>
+        </div>
+    </div>
+</div>
