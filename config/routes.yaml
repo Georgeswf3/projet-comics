@@ -2,10 +2,55 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+home:
+  path: /
+  controller: App\Controller\HomeController::index
+
+articles:
+  path: /articles
+  controller: App\Controller\HomeController::articles
+
+fanArts:
+  path: /fanArts
+  controller: App\Controller\HomeController::fanArts
+
+comments:
+  path: /comments
+  controller: App\Controller\HomeController::comments
+
 admin_home:
   path: /admin/home
   controller: App\Controller\AdminController::homeAction
 
-profile_home:
-  path: /profile/home
-  controller: App\Controller\AdminController::homeUser
+admin_create_articles:
+  path: /admin/articles/create
+  controller: App\Controller\AdminController::createArticles
+
+admin_update_articles:
+  path: /admin/articles/update/{id}
+  controller: App\Controller\AdminController::updateArticles
+
+admin_create_fanArts:
+  path: /admin/fanArts/create
+  controller: App\Controller\AdminController::createFanArts
+
+admin_update_fanArts:
+  path: /admin/fanArts/update/{id}
+  controller: App\Controller\AdminController::updateFanArts
+
+admin_create_comments:
+  path: /admin/comments/create
+  controller: App\Controller\AdminController::createComments
+
+admin_update_comments:
+  path: /admin/comments/update/{id}
+  controller: App\Controller\AdminController::updateComments
+
+admin_create_users:
+  path: /admin/users/create
+  controller: App\Controller\AdminController::createUsers
+
+
+
+
+
