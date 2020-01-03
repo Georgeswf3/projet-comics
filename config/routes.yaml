@@ -5,3 +5,7 @@
 admin_home:
   path: /admin/home
   controller: App\Controller\AdminController::homeAction
+
+profile_home:
+  path: /profile/home
+  controller: App\Controller\AdminController::homeUser
