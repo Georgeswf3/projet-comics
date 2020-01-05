@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
 
 home:
   path: /
@@ -24,7 +24,7 @@ admin_home:
 
 profile_home:
   path: /profile/home
-  controller:App\Controller\AdminController::homeUser
+  controller: App\Controller\AdminController::homeUser
 
 admin_create_articles:
   path: /admin/articles/create
@@ -51,8 +51,8 @@ admin_update_comments:
   controller: App\Controller\AdminController::updateComments
 
 admin_create_users:
-  path: /admin/users/create
-  controller: App\Controller\AdminController::createUsers
+  path: users/create
+  controller: App\Controller\HomeController::createUsers
 
 
 

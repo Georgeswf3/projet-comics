@@ -3,9 +3,34 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
+use App\Form\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
+//rendering forms
+    public function createUsers(Request $request){
+        $user = new User();
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $user = $form->getData();
 
+            $image = $form['avatar_image']->getData();
+            if ($image){
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $newUniqueFileName = $originalFileName."-".uniqid().".".$image->guessExtension();
+                $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
+                $user->setAvatarImage($newUniqueFileName);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute("profile_home");
+        }
+        return $this->render('admin/pages/admin-users-create.html.twig', ['userForm' =>$form->createView(),]);
+    }
 }
