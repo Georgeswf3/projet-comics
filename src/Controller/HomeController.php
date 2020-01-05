@@ -10,18 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-//rendering forms
-    public function createUsers(Request $request){
+
+    public function createUsers(Request $request)
+    {
         $user = new User();
         $form = $this->createForm(UserFormType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $user = $form->getData();
 
             $image = $form['avatar_image']->getData();
-            if ($image){
+            if ($image) {
                 $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $newUniqueFileName = $originalFileName."-".uniqid().".".$image->guessExtension();
+                $newUniqueFileName = $originalFileName . "-" . uniqid() . "." . $image->guessExtension();
                 $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
                 $user->setAvatarImage($newUniqueFileName);
             }
@@ -31,6 +32,10 @@ class HomeController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute("profile_home");
         }
-        return $this->render('admin/pages/admin-users-create.html.twig', ['userForm' =>$form->createView(),]);
+        return $this->render('admin/pages/admin-users-create.html.twig', ['userForm' => $form->createView(),]);
+    }
+
+    public function index(){
+        return $this->render('home.html.twig');
     }
 }
