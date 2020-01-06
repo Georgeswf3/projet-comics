@@ -17,18 +17,18 @@ class AdminController extends AbstractController
 {
     // vue page home administrateur
     public function homeAction(){
-        return $this->render('');
+        return $this->render('admin/pages/admin-home.html.twig');
     }
 
     // vue page home utilisateur lambda
     public function homeUser(){
-        return $this->render('');
+        return $this->render('home.html.twig');
     }
 
     public function createFanArts(Request $request) {
 
-        $fanart = new FanArt();
-        $form = $this->createForm(FanArtType::class, $fanart);
+        $fanArt = new FanArt();
+        $form = $this->createForm(FanArtType::class, $fanArt);
 
         $form->handleRequest($request);
 
@@ -36,7 +36,7 @@ class AdminController extends AbstractController
             $article = $form->getData();
 
         }
-        return $this->render('admin/pages/admin-fanart-create.html.twig', ['fanartForm' => $form->createView(),]);
+        return $this->render('admin/pages/admin-fanart-create.html.twig', ['fanArtForm' => $form->createView(),]);
 
 
     }

@@ -90,8 +90,6 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 
-    public function fanArts() {
-        return $this->render('fanarts.html.twig');
-    }
+
 
 }
