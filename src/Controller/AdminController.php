@@ -21,11 +21,6 @@ class AdminController extends AbstractController
         return $this->render('');
     }
 
-    //rendering forms
-    public function createUsers(Request $request){
-        $user = new User();
-        $form = $this->createForm(UserFormType::class, $user);
-        return $this->render(':admin/pages:admin-users-create.html.twig', ['form' =>$form->createView(),]);
-    }
+
 
 }
