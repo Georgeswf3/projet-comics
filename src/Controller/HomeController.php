@@ -18,6 +18,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $user = $form->getData();
+            $user->setRoles(['ROLE_USER']);
 
             $image = $form['avatar_image']->getData();
             if ($image) {
