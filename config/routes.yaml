@@ -14,10 +14,6 @@ fanArts:
   path: /fanArts
   controller: App\Controller\HomeController::fanArts
 
-comments:
-  path: /comments
-  controller: App\Controller\HomeController::comments
-
 admin_home:
   path: /admin/home
   controller: App\Controller\AdminController::homeAction
@@ -41,14 +37,6 @@ admin_create_fanArts:
 admin_update_fanArts:
   path: /admin/fanArts/update/{id}
   controller: App\Controller\AdminController::updateFanArts
-
-admin_create_comments:
-  path: /admin/comments/create
-  controller: App\Controller\AdminController::createComments
-
-admin_update_comments:
-  path: /admin/comments/update/{id}
-  controller: App\Controller\AdminController::updateComments
 
 admin_create_users:
   path: users/create

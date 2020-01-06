@@ -3,15 +3,18 @@
 namespace App\Controller;
 
 
+use App\Entity\Comment;
 use App\Entity\User;
+use App\Form\CommentArticleType;
 use App\Form\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class HomeController extends AbstractController
 {
 
-    public function createUsers(Request $request)
+    public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(UserFormType::class, $user);
@@ -19,6 +22,8 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()) {
             $user = $form->getData();
             $user->setRoles(['ROLE_USER']);
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
 
             $image = $form['avatar_image']->getData();
             if ($image) {
@@ -38,5 +43,12 @@ class HomeController extends AbstractController
 
     public function index(){
         return $this->render('home.html.twig');
+    }
+
+    public function articles(Request $request){
+
+        $comment = new Comment();
+        $formComment = $this->createForm(CommentArticleType::class, $comment);
+        $formComment->handleRequest($request);
     }
 }
