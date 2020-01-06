@@ -3,16 +3,24 @@
 namespace App\Controller;
 
 
+use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Form\CommentArticleType;
 use App\Form\UserFormType;
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class HomeController extends AbstractController
 {
+    private $articleRepo;
+
+    public function __construct(ArticleRepository $articleRepository)
+    {
+        $this->articleRepo = $articleRepository;
+    }
 
     public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -40,20 +48,25 @@ class HomeController extends AbstractController
         }
         return $this->render('admin/pages/admin-users-create.html.twig', ['userForm' => $form->createView(),]);
     }
-    public function articles(Request $request){
+    public function article(Request $request, $id){
 
+        $article = new Article();
         $comment = new Comment();
+        $article = $this->articleRepo->findOneBy(['id'=>$id]);
+
         $formArticleComment = $this->createForm(CommentArticleType::class, $comment);
         $formArticleComment->handleRequest($request);
 
         if ($formArticleComment->isSubmitted()){
             $comment = $formArticleComment->getData();
+            $comment->setIsConfirmed(true);
+            $comment->setArticleId($article);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            return $this->redirectToRoute("article");
+//            return $this->redirectToRoute("article");
         }
-        return $this->render('pages/article.html.twig', ['commentArticleForm' => $formArticleComment->createView(),]);
+        return $this->render('pages/article.html.twig', ['article'=>$article,'commentArticleForm' => $formArticleComment->createView(),]);
     }
 
     public function fanArts(Request $request){
