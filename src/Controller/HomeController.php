@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Entity\FanArt;
 use App\Form\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,5 +39,9 @@ class HomeController extends AbstractController
 
     public function index(){
         return $this->render('home.html.twig');
+    }
+
+    public function fanArts() {
+        return $this->render('fanarts.html.twig');
     }
 }
