@@ -10,13 +10,17 @@ articles:
   path: /articles
   controller: App\Controller\HomeController::articles
 
+article:
+  path: /article/{id}
+  controller: App\Controller\HomeController::article
+
 fanArts:
   path: /fanArts
   controller: App\Controller\HomeController::fanArts
 
-comments:
-  path: /comments
-  controller: App\Controller\HomeController::comments
+fanArt:
+  path: /fanArt
+  controller: App\Controller\HomeController::fanArts
 
 admin_home:
   path: /admin/home
@@ -41,14 +45,6 @@ admin_create_fanArts:
 admin_update_fanArts:
   path: /admin/fanArts/update/{id}
   controller: App\Controller\AdminController::updateFanArts
-
-admin_create_comments:
-  path: /admin/comments/create
-  controller: App\Controller\AdminController::createComments
-
-admin_update_comments:
-  path: /admin/comments/update/{id}
-  controller: App\Controller\AdminController::updateComments
 
 admin_create_users:
   path: users/create
