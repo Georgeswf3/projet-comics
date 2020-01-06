@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ form_start(commentArticleForm) }}
+
+<div class="form-group mt-5">
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(commentArticleForm.comment_article, {'attr': {class: 'form-control'}}) }}
+        </div>
+    </div>
+
+</div>
+
+    {{ form_end(commentArticleForm) }}
+
+{% endblock %}

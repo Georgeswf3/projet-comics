@@ -40,15 +40,40 @@ class HomeController extends AbstractController
         }
         return $this->render('admin/pages/admin-users-create.html.twig', ['userForm' => $form->createView(),]);
     }
+    public function articles(Request $request){
+
+        $comment = new Comment();
+        $formArticleComment = $this->createForm(CommentArticleType::class, $comment);
+        $formArticleComment->handleRequest($request);
+
+        if ($formArticleComment->isSubmitted()){
+            $comment = $formArticleComment->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute("article");
+        }
+        return $this->render('pages/article.html.twig', ['commentArticleForm' => $formArticleComment->createView(),]);
+    }
+
+    public function fanArts(Request $request){
+
+        $comment = new Comment();
+        $formFanArtComment = $this->createForm(CommentFanArtType::class, $comment);
+        $formFanArtComment->handleRequest($request);
+
+        if ($formFanArtComment->isSubmitted()){
+            $comment = $formFanArtComment->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute("fanArt");
+        }
+        return $this->render('pages/fanart.html.twig', ['commentFanArtForm' => $formFanArtComment->createView(),]);
+    }
 
     public function index(){
         return $this->render('home.html.twig');
     }
 
-    public function articles(Request $request){
-
-        $comment = new Comment();
-        $formComment = $this->createForm(CommentArticleType::class, $comment);
-        $formComment->handleRequest($request);
-    }
 }
