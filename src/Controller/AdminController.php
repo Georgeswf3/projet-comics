@@ -20,10 +20,7 @@ class AdminController extends AbstractController
         return $this->render('admin/pages/admin-home.html.twig');
     }
 
-    // vue page home utilisateur lambda
-    public function homeUser(){
-        return $this->render('home.html.twig');
-    }
+
 
     public function createFanArts(Request $request) {
 
@@ -48,6 +45,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_home');
 
         }
+
         return $this->render('admin/pages/admin-fanart-create.html.twig', ['fanArtForm' => $form->createView(),]);
 
     }
@@ -57,9 +55,14 @@ class AdminController extends AbstractController
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $article = $form->getData();
 
+        if ($form->isSubmitted()){
+            $article = $form->getData();
+            $article->setIsConfirmed(true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+            return $this->redirectToRoute("articles");
         }
         return $this->render("admin/pages/admin-article-create.html.twig", ["articleForm" => $form->createView()]);
     }
