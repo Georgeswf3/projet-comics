@@ -6,8 +6,8 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\User;
-use App\Form\CommentArticleType;
 use App\Entity\FanArt;
+use App\Form\CommentArticleType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -93,5 +93,11 @@ class HomeController extends AbstractController
     public function articles(){
         return $this->render('pages/articles.html.twig');
     }
+
+    public function fanArts(){
+        return $this->render('pages/fanarts.html.twig');
+    }
+
+
 
 }
