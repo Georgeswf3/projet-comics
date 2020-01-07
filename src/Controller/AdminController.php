@@ -33,11 +33,22 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted()) {
-            $article = $form->getData();
+            $fanArt = $form->getData();
+            $image = $form['fan_art_sketch']->getData();
+            if ($image){
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $newUniqueFileName = $originalFileName."-".uniqid().'.'.$image->getExtension();
+                $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
+                $fanArt->setFanArtSketch($newUniqueFileName);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($fanArt);
+            $entityManager->flush();
+            return $this->redirectToRoute('admin_home');
 
         }
         return $this->render('admin/pages/admin-fanart-create.html.twig', ['fanArtForm' => $form->createView(),]);
-
 
     }
 
