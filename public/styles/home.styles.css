@@ -79,6 +79,7 @@ header{
 .labelTitre{
     text-shadow:2px 1px 1px rgb(202, 172, 0);
     text-align: center;
+    color: white;
 }
 
 .labelLog input{

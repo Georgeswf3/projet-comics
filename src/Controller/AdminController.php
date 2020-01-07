@@ -10,12 +10,21 @@ use App\Entity\FanArt;
 use App\Form\FanArtType;
 use App\Form\ArticleType;
 use App\Form\UserFormType;
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 
 class AdminController extends AbstractController
 {
     // vue page home administrateur
+    private $articleRepo;
+
+    public function __construct(ArticleRepository $articleRepository)
+    {
+        $this->articleRepo = $articleRepository;
+    }
+
     public function homeAction(){
         return $this->render('admin/pages/admin-home.html.twig');
     }
@@ -57,5 +66,19 @@ class AdminController extends AbstractController
             return $this->redirectToRoute("articles");
         }
         return $this->render("admin/pages/admin-article-create.html.twig", ["articleForm" => $form->createView()]);
+    }
+    public function updateArticle(Request $request, $id)
+    {
+        $article = $this->articleRepo->find($id);
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $article = $form->getData();
+
+            $actualTitle = $article->getTitle();
+            //récupérer mon user dans la BDD
+            $author = $this->articleRepo->findOneBy($id);
+            $article->setAuthor($author);
+        }
     }
 }
