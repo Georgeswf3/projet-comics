@@ -185,6 +185,10 @@ header{
     transition-duration:0.5s;
 }
 
+.centrer{
+    text-align: center;
+}
+
 
 
 /**** Degradé sympa ****/

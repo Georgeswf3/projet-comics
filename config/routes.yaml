@@ -50,6 +50,10 @@ admin_create_users:
   path: users/create
   controller: App\Controller\HomeController::createUsers
 
+user_home:
+  path: /user/home
+  controller: App\Controller\UserController::homeAction
+
 user_create_articles:
   path: /user/articles/create
   controller: App\Controller\UserController::createArticles
