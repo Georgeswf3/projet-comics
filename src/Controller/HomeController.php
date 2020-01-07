@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Form\CommentArticleType;
+use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -88,5 +89,7 @@ class HomeController extends AbstractController
     public function index(){
         return $this->render('home.html.twig');
     }
+
+
 
 }
