@@ -17,31 +17,31 @@ class Comment
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $comment_article;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $comment_fan_art;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
-    private $user_id;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $article_id;
+    private $article;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\FanArt", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $fan_art_id;
+    private $fan_art;
 
     /**
      * @ORM\Column(type="boolean")
@@ -79,36 +79,36 @@ class Comment
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getArticleId(): ?Article
     {
-        return $this->article_id;
+        return $this->article;
     }
 
-    public function setArticleId(?Article $article_id): self
+    public function setArticleId(?Article $article): self
     {
-        $this->article_id = $article_id;
+        $this->article_id = $article;
 
         return $this;
     }
 
     public function getFanArtId(): ?FanArt
     {
-        return $this->fan_art_id;
+        return $this->fan_art;
     }
 
-    public function setFanArtId(?FanArt $fan_art_id): self
+    public function setFanArtId(?FanArt $fan_art): self
     {
-        $this->fan_art_id = $fan_art_id;
+        $this->fan_art = $fan_art;
 
         return $this;
     }
