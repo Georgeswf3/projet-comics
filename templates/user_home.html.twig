@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% block style %}
+        <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
+    {% endblock %}
+<div class="centrer">
+
+    <h4>Bienvenue, {{ user.pseudo }}</h4>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
