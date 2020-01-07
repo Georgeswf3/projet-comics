@@ -50,6 +50,21 @@ admin_create_users:
   path: users/create
   controller: App\Controller\HomeController::createUsers
 
+user_create_articles:
+  path: /user/articles/create
+  controller: App\Controller\UserController::createArticles
+
+user_update_articles:
+  path: /user/articles/update
+  controller: App\Controller\UserController::updateArticles
+
+user_create_fanArts:
+  path: /user/fanArts/create
+  controller: App\Controller\UserController::createFanArts
+
+user_update_fanArts:
+  path: /user/fanArts/update
+  controller: App\Controller\UserController::updateFanArts
 
 
 
