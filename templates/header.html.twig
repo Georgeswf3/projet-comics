@@ -18,6 +18,7 @@
 
   {# Formulaire #}
   <div class="element-right">
+
     <form>
         <div class="labelTitre">Viens te loguer !</div>
         <div class="labelLog">
@@ -27,6 +28,7 @@
             <input type="password" name="pass" placeholder="Mot de passe">
         </div>
         <input class="submit" type="submit" value="Connection" name="connection">
+        {{ render(controller('App\\Controller\\UserController::homeAction')) }}
     </form>
   </div>
 </header>
