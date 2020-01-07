@@ -70,7 +70,7 @@ class HomeController extends AbstractController
         return $this->render('pages/article.html.twig', ['article'=>$article,'commentArticleForm' => $formArticleComment->createView(),]);
     }
 
-    public function fanArts(Request $request){
+    public function fanArt(Request $request){
 
         $comment = new Comment();
         $formFanArtComment = $this->createForm(CommentFanArtType::class, $comment);
