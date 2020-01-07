@@ -20,10 +20,7 @@ class AdminController extends AbstractController
         return $this->render('admin/pages/admin-home.html.twig');
     }
 
-    // vue page home utilisateur lambda
-    public function homeUser(){
-        return $this->render('home.html.twig');
-    }
+
 
     public function createFanArts(Request $request) {
 

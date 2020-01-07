@@ -79,11 +79,10 @@ class HomeController extends AbstractController
             $entityManager->flush();
            return $this->redirectToRoute("article");
         }
-
         return $this->render('pages/article.html.twig', ['article'=>$article,'commentArticleForm' => $formArticleComment->createView(),]);
     }
 
-    public function fanArts(Request $request){
+    public function fanArt(Request $request){
 
         $comment = new Comment();
         $formFanArtComment = $this->createForm(CommentFanArtType::class, $comment);
@@ -106,5 +105,11 @@ class HomeController extends AbstractController
     public function articles(){
         return $this->render('pages/articles.html.twig');
     }
+
+    public function fanArts(){
+        return $this->render('pages/fanarts.html.twig');
+    }
+
+
 
 }
