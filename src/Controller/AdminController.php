@@ -33,6 +33,7 @@ class AdminController extends AbstractController
             $article = $form->getData();
 
         }
+
         return $this->render('admin/pages/admin-fanart-create.html.twig', ['fanArtForm' => $form->createView(),]);
 
 
@@ -43,9 +44,14 @@ class AdminController extends AbstractController
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $article = $form->getData();
 
+        if ($form->isSubmitted()){
+            $article = $form->getData();
+            $article->setIsConfirmed(true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+            return $this->redirectToRoute("articles");
         }
         return $this->render("admin/pages/admin-article-create.html.twig", ["articleForm" => $form->createView()]);
     }
