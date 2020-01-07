@@ -21,12 +21,13 @@ class UserController extends AbstractController
 
 // vue page home utilisateur lambda
     public function homeAction(Request $request, Security $security){
+        $currentUser = $security->getUser();
+        $user = null;
+        if ($currentUser != null){
 
-        if ($security->getUser()){
-        $user = $this->userRepo->findOneBy(['email' =>$security->getUser()->getUsername()]);}
-        else{
-            $user = null;
+        $user = $this->userRepo->findOneBy(['email' =>$security->getUser()->getUsername()]);
         }
+
         return $this->render('user_home.html.twig', ["user" => $user]);
     }
 }
