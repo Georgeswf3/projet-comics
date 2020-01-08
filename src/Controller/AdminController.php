@@ -64,7 +64,7 @@ class AdminController extends AbstractController
         }
         return $this->render("admin/pages/admin-article-create.html.twig", ["articleForm" => $form->createView()]);
     }
-    public function updateArticle(Request $request, $id)
+    public function updateArticles(Request $request, $id)
     {
         $article = $this->articleRepo->find($id);
         $form = $this->createForm(ArticleType::class, $article);
@@ -72,10 +72,15 @@ class AdminController extends AbstractController
         if ($form->isSubmitted()) {
             $article = $form->getData();
 
-            $actualTitle = $article->getTitle();
-            //récupérer mon user dans la BDD
-            $author = $this->articleRepo->findOneBy($id);
-            $article->setAuthor($author);
+//            $actualTitle = $article->getTitle();
+//            //récupérer mon user dans la BDD
+//            $author = $this->articleRepo->findOneBy($id);
+//            $article->setAuthor($author);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+            return $this->redirectToRoute("articles");
         }
+        return $this->render('admin/pages/admin-article-update.html.twig', ["articleUpdateForm" => $form->createView()]);
     }
 }
