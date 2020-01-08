@@ -11,17 +11,21 @@ use App\Form\CommentArticleType;
 use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 class HomeController extends AbstractController
 {
     private $articleRepo;
+    private $userRepo;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository)
     {
         $this->articleRepo = $articleRepository;
+        $this->userRepo = $userRepository;
     }
 
     public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -110,6 +114,12 @@ class HomeController extends AbstractController
         return $this->render('pages/fanarts.html.twig');
     }
 
+// vue page home utilisateur lambda
+
+    public function homeAction(Request $request, Security $security){
+
+            $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
+            return $this->render('home.html.twig', ["user" => $user]);}
 
 
 }
