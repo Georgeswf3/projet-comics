@@ -19,8 +19,8 @@ fanArts:
   controller: App\Controller\HomeController::fanArts
 
 fanArt:
-  path: /fanArt
-  controller: App\Controller\HomeController::fanArts
+  path: /fanArt/{id}
+  controller: App\Controller\HomeController::fanArt
 
 admin_home:
   path: /admin/home
