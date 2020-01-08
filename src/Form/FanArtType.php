@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\FanArt;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +16,7 @@ class FanArtType extends AbstractType
         $builder
             ->add('fan_art_title')
             ->add('fan_art_hook')
-            ->add('fan_art_sketch')
+            ->add('fan_art_sketch', FileType::class, ['mapped' => false, 'required' => false])
             ->add('isConfirmed')
             ->add('ajouter', SubmitType::class);
     }
