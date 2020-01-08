@@ -6,8 +6,9 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\User;
-use App\Entity\FanArt;
+use App\Form\ArticleType;
 use App\Form\CommentArticleType;
+use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
@@ -59,8 +60,19 @@ class HomeController extends AbstractController
         $comment = new Comment();
         $article = $this->articleRepo->findOneBy(['id'=>$id]);
 
+        $formArticleCreate = $this->createForm(ArticleType::class, $article);
+        $formArticleCreate->handleRequest($request);
         $formArticleComment = $this->createForm(CommentArticleType::class, $comment);
         $formArticleComment->handleRequest($request);
+
+        if ($formArticleCreate->isSubmitted()){
+            $article = $formArticleCreate->getData();
+            $article->setIsConfirmed(true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+            return $this->redirectToRoute("article");
+        }
 
         if ($formArticleComment->isSubmitted()){
             $comment = $formArticleComment->getData();
@@ -69,7 +81,7 @@ class HomeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-//            return $this->redirectToRoute("article");
+           return $this->redirectToRoute("article");
         }
         return $this->render('pages/article.html.twig', ['article'=>$article,'commentArticleForm' => $formArticleComment->createView(),]);
     }
