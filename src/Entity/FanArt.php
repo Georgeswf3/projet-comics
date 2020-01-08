@@ -50,7 +50,7 @@ class FanArt
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="fanArts")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
