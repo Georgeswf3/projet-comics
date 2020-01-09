@@ -18,11 +18,11 @@
                 {{ form_row(fanArtForm.fan_art_sketch, {'attr': {class : "form-control"}}) }}
             </div>
 
-            {% if admin == 1 %}
+            {% if app.user %}
             <div class="col-12">
                 {{ form_row(fanArtForm.isConfirmed, {'attr': {class : "form-control"}}) }}
             </div>
-            {% endif %}
+            {%  endif %}
             <div class="col-6">
                 {{ form_row(fanArtForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
             </div>

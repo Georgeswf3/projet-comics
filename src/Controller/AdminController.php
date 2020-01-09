@@ -8,10 +8,12 @@ use App\Entity\Article;
 use App\Entity\User;
 use App\Entity\FanArt;
 use App\Form\FanArtType;
+use App\Form\FanArtAdminType;
 use App\Form\ArticleType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -21,11 +23,13 @@ class AdminController extends AbstractController
     // vue page home administrateur
     private $articleRepo;
     private $fanArtRepo;
+    private $userRepo;
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, UserRepository $userRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
+        $this->userRepo = $userRepository;
     }
 
     public function homeAction(){
@@ -34,10 +38,16 @@ class AdminController extends AbstractController
 
 
 
-    public function createFanArts(Request $request) {
+    public function createFanArts(Request $request, Security $security) {
 
         $fanArt = new FanArt();
-        $form = $this->createForm(FanArtType::class, $fanArt);
+        $role = $this->userRepo->findOneBy(['roles' => $security->getUser()->getRoles()]);
+
+        if($role['roles'] == ['ROLE_ADMIN']) {
+            $form = $this->createForm(FanArtAdminType::class, $fanArt);
+        } else {
+            $form = $this->createForm(FanArtType::class, $fanArt);
+        }
 
         $form->handleRequest($request);
 
