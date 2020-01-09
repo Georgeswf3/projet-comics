@@ -11,6 +11,7 @@ use App\Form\CommentArticleType;
 use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,14 @@ use Symfony\Component\Security\Core\Security;
 class HomeController extends AbstractController
 {
     private $articleRepo;
+    private $fanArtRepo;       
     private $userRepo;
 
-    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository)
+    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository, FanArtRepository $fanArtRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->userRepo = $userRepository;
+        $this->fanArtRepo = $fanArtRepository;
     }
 
     public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -106,12 +109,20 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 
-    public function articles(){
-        return $this->render('pages/articles.html.twig');
+    public function articles(Request $request){
+        $articles = $this->articleRepo->findAll();
+        return $this->render('pages/articles.html.twig', 
+        [
+            "articles" => $articles
+        ]);
     }
 
     public function fanArts(){
-        return $this->render('pages/fanarts.html.twig');
+        $fanArts = $this->fanArtRepo->findAll(); 
+        return $this->render('pages/fanarts.html.twig',
+        [
+            "fanArts" => $fanArts
+        ]);
     }
 
 // vue page home utilisateur lambda
