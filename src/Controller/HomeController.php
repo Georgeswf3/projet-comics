@@ -11,6 +11,7 @@ use App\Form\CommentArticleType;
 use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\FanArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -18,10 +19,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class HomeController extends AbstractController
 {
     private $articleRepo;
+    private $fanArtRepo;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
     {
         $this->articleRepo = $articleRepository;
+        $this->fanArtRepo = $fanArtRepository;
     }
 
     public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -104,11 +107,18 @@ class HomeController extends AbstractController
 
     public function articles(Request $request){
         $articles = $this->articleRepo->findAll();
-        return $this->render('pages/articles.html.twig', ["articles" => $articles]);
+        return $this->render('pages/articles.html.twig', 
+        [
+            "articles" => $articles
+        ]);
     }
 
     public function fanArts(){
-        return $this->render('pages/fanarts.html.twig');
+        $fanArts = $this->fanArtRepo->findAll(); 
+        return $this->render('pages/fanarts.html.twig',
+        [
+            "fanArts" => $fanArts
+        ]);
     }
 
 
