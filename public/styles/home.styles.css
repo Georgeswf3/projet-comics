@@ -212,7 +212,33 @@ header{
     background-position-x:15px;
 }
 
+/**** Page Fan Arts ****/
 
+.contenuElements{
+    width:100%;
+    height:720px;
+    margin-top:60px;
+    background-color:red;
+    display:flex;
+    flex-direction:row;
+}
 
-/**** Page artistes ****/
+.elements{
+    min-width:320px;
+    height:350px;
+    background-color: rgb(212, 212, 212);
+    border:1px solid black;
+    border-radius:10px;
+    text-align:center;
+    margin:10px auto;
+}
 
+.elements img{
+    width:200px; 
+    height:200px;
+}
+
+.text{
+    margin-top:8px;
+    background-color:rgb(161, 161, 161);
+}

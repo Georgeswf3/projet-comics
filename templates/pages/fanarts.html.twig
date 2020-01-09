@@ -2,10 +2,16 @@
 
 {% block body %}
 
-    {% for fanArt in fanArts %}
-        <p>{{ fanArt.fanArtTitle }}</p>
-        <p>{{ fanArt.fanArtHook }}</p>
-        <img src="{{ fanArt.fanArtSketch }}" style="width:200px; height:200px;"></img>
-    {% endfor %}
-
+    <div class="contenuElements">
+        {% for fanArt in fanArts %}
+            <div class="elements">
+                <p>{{ fanArt.fanArtTitle }}</p>
+                <img src="{{ fanArt.fanArtSketch }}"></img>
+                <div class="text">
+                    <p>{{ fanArt.fanArtHook }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{# Modifier contenuElements #}
 {% endblock %}
