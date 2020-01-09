@@ -11,6 +11,7 @@ use App\Form\FanArtType;
 use App\Form\ArticleType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\FanArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -19,10 +20,12 @@ class AdminController extends AbstractController
 {
     // vue page home administrateur
     private $articleRepo;
+    private $fanArtRepo;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
     {
         $this->articleRepo = $articleRepository;
+        $this->fanArtRepo = $fanArtRepository;
     }
 
     public function homeAction(){
@@ -93,5 +96,20 @@ class AdminController extends AbstractController
             return $this->redirectToRoute("articles");
         }
         return $this->render('admin/pages/admin-article-update.html.twig', ["articleUpdateForm" => $form->createView()]);
+    }
+
+    public function updateFanArts (Request $request, $id)
+    {
+        $fanArt = $this->fanArtRepo->find($id);
+        $form = $this->createForm(FanArtType::class, $fanArt);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $fanArt = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($fanArt);
+            $entityManager->flush();
+            return $this->redirectToRoute('fanArts');
+        }
+        return $this->render('admin/pages/admin-fanart-update.html.twig', ["fanArtUpdateForm" => $form->createView()]);
     }
 }
