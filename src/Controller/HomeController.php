@@ -12,18 +12,22 @@ use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 class HomeController extends AbstractController
 {
     private $articleRepo;
-    private $fanArtRepo;
+    private $fanArtRepo;       
+    private $userRepo;
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository, FanArtRepository $fanArtRepository)
     {
         $this->articleRepo = $articleRepository;
+        $this->userRepo = $userRepository;
         $this->fanArtRepo = $fanArtRepository;
     }
 
@@ -121,6 +125,12 @@ class HomeController extends AbstractController
         ]);
     }
 
+// vue page home utilisateur lambda
+
+    public function homeAction(Request $request, Security $security){
+
+            $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
+            return $this->render('home.html.twig', ["user" => $user]);}
 
 
 }

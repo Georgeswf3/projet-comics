@@ -97,7 +97,7 @@ header{
 
 .submit{
     font-family: 'Permanent Marker', cursive;
-    margin-top:68px;
+    margin-top:210px;
     width:100%;
     height:30px;
     letter-spacing: 3px;
@@ -147,6 +147,10 @@ header{
     color:#C1B2A6;
     text-shadow: 3px 3px 2px black;
     transition-duration: 0.5s;
+}
+
+.centrer{
+    text-align: center;
 }
 
 /**** Footer ****/
