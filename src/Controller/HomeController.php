@@ -102,8 +102,9 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 
-    public function articles(){
-        return $this->render('pages/articles.html.twig');
+    public function articles(Request $request){
+        $articles = $this->articleRepo->findAll();
+        return $this->render('pages/articles.html.twig', ["articles" => $articles]);
     }
 
     public function fanArts(){
