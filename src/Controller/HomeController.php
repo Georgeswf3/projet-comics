@@ -21,8 +21,8 @@ use Symfony\Component\Security\Core\Security;
 class HomeController extends AbstractController
 {
     private $articleRepo;
-    private $userRepo;
     private $fanArtRepo;
+    private $userRepo;
 
     public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository, FanArtRepository $fanArtRepository)
     {
@@ -109,16 +109,28 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 
-    public function articles(Request $request){
+    public function articles(Request $request)
+    {
+        $articles = $this->articleRepo->findAll();
         $from = $request->query->get("from");
         $articles = $this->articleRepo->findPaginatedArticles($from);
-        return $this->render('pages/articles.html.twig', ["articles"=>$articles, "from"=>$from]);
-    }
+        return $this->render('pages/articles.html.twig',
+            [
+                "articles" => $articles,
+                "from" => $from
+            ]);
 
+
+    }
     public function fanArts(Request $request){
         $from = $request->query->get("from");
         $fanArts = $this->fanArtRepo->findPaginatedFanArts($from);
-        return $this->render('pages/fanarts.html.twig', ["fanArts"=>$fanArts, "from"=>$from]);
+        $fanArts = $this->fanArtRepo->findAll();
+        return $this->render('pages/fanarts.html.twig',
+        [
+            "fanArts" => $fanArts,
+            "from" => $from
+        ]);
     }
 
 // vue page home utilisateur lambda
