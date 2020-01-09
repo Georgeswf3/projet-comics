@@ -11,11 +11,12 @@ header{
 }
   
 .element-left{
-    background-image:url(/medias/logomix.jpg);
+    background-image:url(/medias/logomix2.jpg);
+    background-color:red;
     background-repeat:no-repeat;
     background-size:cover;
-    width:20%;
-    height:230px;
+    min-width:23%;
+    height:250px;
 }
 
 .block-middle{
@@ -63,9 +64,9 @@ header{
 
 /* Formulaire */
 .element-right{
-    min-width:130px;
+    min-width:140px;
     max-width:180px;
-    height:230px;
+    height:270px;
     background-image:url(/medias/wolvieminiblue.gif);
     background-position-y:-20px;
     background-repeat:no-repeat;
