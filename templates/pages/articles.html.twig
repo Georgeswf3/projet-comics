@@ -2,6 +2,10 @@
 
 {% block body %}
 
-    <p>Affichage Article</p>
+    {% for article in articles %}
+        <p>{{ article.articleTitle }}</p>
+        <p>{{ article.articleText }}</p>
+        {# <p>{{ article.articleDate }}</p> #}
+    {% endfor %}
 
 {% endblock %}
