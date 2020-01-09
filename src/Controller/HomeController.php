@@ -11,6 +11,7 @@ use App\Form\CommentArticleType;
 use App\Entity\FanArt;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +22,13 @@ class HomeController extends AbstractController
 {
     private $articleRepo;
     private $userRepo;
+    private $fanArtRepo;
 
-    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository)
+    public function __construct(ArticleRepository $articleRepository, UserRepository $userRepository, FanArtRepository $fanArtRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->userRepo = $userRepository;
+        $this->fanArtRepo = $fanArtRepository;
     }
 
     public function createUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -106,12 +109,16 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 
-    public function articles(){
-        return $this->render('pages/articles.html.twig');
+    public function articles(Request $request){
+        $from = $request->query->get("from");
+        $articles = $this->articleRepo->findPaginatedArticles($from);
+        return $this->render('pages/articles.html.twig', ["articles"=>$articles, "from"=>$from]);
     }
 
-    public function fanArts(){
-        return $this->render('pages/fanarts.html.twig');
+    public function fanArts(Request $request){
+        $from = $request->query->get("from");
+        $fanArts = $this->fanArtRepo->findPaginatedFanArts($from);
+        return $this->render('pages/fanarts.html.twig', ["fanArts"=>$fanArts, "from"=>$from]);
     }
 
 // vue page home utilisateur lambda

@@ -4,4 +4,15 @@
 
     <p>Affichage Article</p>
 
+    <div class="row justify-content-around">
+        <div class="col-3">
+            {% if from > 1 %}
+                <a href="{{path('articles', {from : from - 1}) }}"><h3>Précédent</h3></a>
+            {% endif %}
+        </div>
+        <div class="col-3">
+            <a style="text-align: end" href="{{ path('articles', {from : from + 1}) }}"><h3>Suivant</h3></a>
+        </div>
+    </div>
+
 {% endblock %}
