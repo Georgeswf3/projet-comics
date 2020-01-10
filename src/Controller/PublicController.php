@@ -4,9 +4,13 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
+use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PublicController extends AbstractController
 {
@@ -48,9 +52,30 @@ class PublicController extends AbstractController
     {
     }
 
-    public function signup()
+    public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        return $this->render('cre')
+        $user = new User();
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $user = $form->getData();
+            $user->setRoles(['ROLE_USER']);
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
+            $image = $form['avatar_image']->getData();
+            if ($image){
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $newUniqueFileName = $originalFileName."-".uniqid().".".$image->guessExtension();
+                $image->move($this->getParameter('uploaded-images'),$newUniqueFileName);
+                $user->setAvatarImage($newUniqueFileName);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('pages/signup.html.twig', ['userForm'=>$form->createView()]);
     }
 
 

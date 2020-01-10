@@ -43,6 +43,7 @@ class DashboardController extends AbstractController
 
     public function userUpdate()
     {
+        return $this->render('dashboard/pages/dashboard_update_user.html.twig');
     }
 
     public function editorsCreate()
