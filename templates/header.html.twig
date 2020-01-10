@@ -1,9 +1,9 @@
-{% block style %}
-    <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
-{% endblock %}
-
 {# Header + bouton #}
 {% block body %}
+
+    {% block style %}
+        <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
+    {% endblock %}
 
     <header>
     <div class="element-left"></div>
@@ -16,7 +16,7 @@
         <button><a href="{{ path ("articles")}}">Artistes</a></button>
         <button><a href="{{ path ("fanArts") }}">Fan Arts</a></button>
         {% if not app.user %}
-        <button><a href="{{ path('admin_create_users') }}">S'inscrire</a> </button>
+        {# <button><a href="{{ path('admin_create_users') }}">S'inscrire</a> </button> #}
         {% endif %}
         </div>
     </div>
