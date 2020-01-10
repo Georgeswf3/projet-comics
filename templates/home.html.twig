@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="{{ asset("styles/home.styles.css") }}">
     {% endblock %}
 
-
+    {% if app.user %}
+    <h4 class="centrer">{{ app.user.pseudo }}</h4>
+    {% endif %}
 
 
     <div class="contenuPresentation">
