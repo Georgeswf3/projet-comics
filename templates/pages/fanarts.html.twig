@@ -2,10 +2,22 @@
 
 {% block body %}
 
-    {% for fanArt in fanArts %}
-        <p>{{ fanArt.fanArtTitle }}</p>
-        <p>{{ fanArt.fanArtHook }}</p>
+    {% block styleFanArts %}
+        <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
+    {% endblock %}
 
-    {% endfor %}
+    {% include "pages/parts/sidebar.html.twig" %}
+
+    <div class="contenuElements">
+        {% for fanArt in fanArts %}
+            <div class="elements">
+                <p>{{ fanArt.fanArtTitle }}</p>
+                <img src="{{ fanArt.fanArtSketch }}"></img>
+                <div class="text">
+                    <p>{{ fanArt.fanArtHook }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
