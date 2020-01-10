@@ -2,6 +2,12 @@
 
 {% block body %}
 
+    {% block styleFanArts %}
+        <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
+    {% endblock %}
+
+    {% include "pages/parts/sidebar.html.twig" %}
+
     <div class="contenuElements">
         {% for fanArt in fanArts %}
             <div class="elements">
@@ -13,5 +19,5 @@
             </div>
         {% endfor %}
     </div>
-{# Modifier contenuElements #}
+
 {% endblock %}
