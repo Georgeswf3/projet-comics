@@ -50,6 +50,7 @@ class PublicController extends AbstractController
 
     public function signup()
     {
+        return $this->render('cre')
     }
 
 
