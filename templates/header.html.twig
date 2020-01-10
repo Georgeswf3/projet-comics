@@ -4,33 +4,7 @@
 
 {# Header + bouton #}
 {% block body %}
-<header>
-  <div class="element-left"></div>
-  <div class="block-middle">
-    <div class="element-middle-top">
-        <div class="background-middle-top"></div>
-    </div>
-    <div class="element-middle-bottom">
-      <button><a href="/">Accueil</a></button>
-      <button><a href="{{ path ("articles")}}">Artistes</a></button>
-      <button><a href="{{ path ("fanArts") }}">Fan Arts</a></button>
-      {% if not app.user %}
-      <button><a href="{{ path('admin_create_users') }}">S'inscrire</a> </button>
-      {% endif %}
-    </div>
-  </div>
 
-  {# Formulaire #}
-  <div class="element-right">
-
-    {% if app.user %}
-        <button class="submit"><a href="{{ path('logout') }}">Se déconnecter</a> </button>
-    {% else %}
-        <button class="submit"><a href="{{ path('login') }}">Se connecter</a> </button>
-    {% endif %}
-
-  </div>
-</header>
 
 {% endblock %}
 

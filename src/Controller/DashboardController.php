@@ -4,53 +4,55 @@
 namespace App\Controller;
 
 
-class DashboardController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class DashboardController extends AbstractController
 {
-    public function homeActionAction()
+    public function homeAction()
     {
     }
 
-    public function articleCreateAction()
+    public function articleCreate()
     {
     }
 
-    public function articleUpdateAction()
+    public function articleUpdate()
     {
     }
 
-    public function fanArtsCreateAction()
+    public function fanArtsCreate()
     {
     }
 
-    public function fanArtsUpdateAction()
+    public function fanArtsUpdate()
     {
     }
 
-    public function userUpdateAction()
+    public function userUpdate()
     {
     }
 
-    public function editorsCreateAction()
+    public function editorsCreate()
     {
     }
 
-    public function editorsUpdateAction()
+    public function editorsUpdate()
     {
     }
 
-    public function jobsCreateAction()
+    public function jobsCreate()
     {
     }
 
-    public function jobsUpdateAction()
+    public function jobsUpdate()
     {
     }
 
-    public function authorsCreateAction()
+    public function authorsCreate()
     {
     }
 
-    public function authorsUpdateAction()
+    public function authorsUpdate()
     {
     }
 

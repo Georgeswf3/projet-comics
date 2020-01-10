@@ -2,7 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\FanArt;
 use App\Entity\User;
+use App\Entity\Article;
+use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -10,10 +13,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserFixtures extends Fixture
 {
     private $passwordEncoder;
+    private $faker;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->faker = new Factory();
+        $this->faker = $this->faker->create();
     }
 
     public function load(ObjectManager $manager)
@@ -77,5 +83,34 @@ class UserFixtures extends Fixture
 
 
         $manager->flush();
+
+        for ($i = 0; $i < 25; $i++){
+            $article = new Article();
+            $article->setArticleTitle($this->faker->realText(30, 2));
+            $article->setArticleText($this->faker->realText(200, 2));
+            $article->setUserId($user);
+            $article->setIsConfirmed(true);
+//            $article->setSlug(strtolower($slugger->slug($article->getTitle())));
+            $article->setArticleDate($this->faker->dateTimeThisDecade);
+
+            $manager->persist($article);
+            $manager->flush();
+
+        }
+
+        for ($i = 0; $i < 25; $i++){
+            $fanArt = new FanArt();
+            $fanArt->setFanArtTitle($this->faker->realText(30, 2));
+            $fanArt->setFanArtHook($this->faker->text(50));
+            $fanArt->setFanArtSketch($this->faker->imageUrl($width = 640, $height = 480, 'cats', true, 'Faker'));
+            $fanArt->setUserId($user);
+            $fanArt->setIsConfirmed(true);
+//            $fanArt->setSlug(strtolower($slugger->slug($article->getTitle())));
+
+
+            $manager->persist($fanArt);
+            $manager->flush();
+
+        }
     }
 }
