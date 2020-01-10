@@ -12,71 +12,76 @@ logout:
 
 home:
   path: /
-  controller: App\Controller\HomeController::index
+  controller: App\Controller\PublicController::index
 
 articles:
   path: /articles
-  controller: App\Controller\HomeController::articles
+  controller: App\Controller\PublicController::articles
 
 article:
   path: /article/{id}
-  controller: App\Controller\HomeController::article
+  controller: App\Controller\PublicController::article
 
 fanArts:
   path: /fanArts
-  controller: App\Controller\HomeController::fanArts
+  controller: App\Controller\PublicController::fanArts
 
 fanArt:
   path: /fanArt/{id}
-  controller: App\Controller\HomeController::fanArt
+  controller: App\Controller\PublicController::fanArt
 
-admin_home:
-  path: /admin/home
-  controller: App\Controller\AdminController::homeAction
+create_users:
+  path: /signup
+  controller: App\Controller\PublicController::signup
 
-profile_home:
-  path: /profile/home
-  controller: App\Controller\HomeController::homeAction
+dashboard_home:
+  path: /dashboard/home
+  controller: App\Controller\DashboardController::homeAction
 
-admin_create_articles:
-  path: /admin/articles/create
-  controller: App\Controller\AdminController::createArticles
+dashboard_articles_create:
+  path: /dashboard/articles/create
+  controller: App\Controller\DashboardController::articleCreate
 
-admin_update_articles:
-  path: /admin/articles/update/{id}
-  controller: App\Controller\AdminController::updateArticles
+dashboard_articles_update:
+  path: /dashboard/articles/update
+  controller: App\Controller\DashboardController::articleUpdate
 
-admin_create_fanArts:
-  path: /admin/fanArts/create
-  controller: App\Controller\AdminController::createFanArts
+dashboard_fanArts_create:
+  path: /dashboard/fanArts/create
+  controller: App\Controller\DashboardController::fanArtsCreate
 
-admin_update_fanArts:
-  path: /admin/fanArts/update/{id}
-  controller: App\Controller\AdminController::updateFanArts
+dashboard_fanArts_update:
+  path: /dashboard/fanArts/update
+  controller: App\Controller\DashboardController::fanArtsUpdate
 
-admin_create_users:
-  path: users/create
-  controller: App\Controller\HomeController::createUsers
+dashboard_user_update:
+  path: /dashboard/user/update
+  controller: App\Controller\DashboardController::userUpdate
 
-user_home:
-  path: /user/home
-  controller: App\Controller\HomeController::homeAction
+dashboard_editors_create:
+  path: /dashboard/editors/create
+  controller: App\Controller\DashboardController::editorsCreate
 
-user_create_articles:
-  path: /user/articles/create
-  controller: App\Controller\UserController::createArticles
+dashboard_editors_update:
+  path: /dashboard/editors/update
+  controller: App\Controller\DashboardController::editorsUpdate
 
-user_update_articles:
-  path: /user/articles/update
-  controller: App\Controller\UserController::updateArticles
+dashboard_jobs_create:
+  path: /dashboard/jobs/create
+  controller: App\Controller\DashboardController::jobsCreate
 
-user_create_fanArts:
-  path: /user/fanArts/create
-  controller: App\Controller\UserController::createFanArts
+dashboard_jobs_update:
+  path: /dashboard/jobs/update
+  controller: App\Controller\DashboardController::jobsUpdate
 
-user_update_fanArts:
-  path: /user/fanArts/update
-  controller: App\Controller\UserController::updateFanArts
+dashboard_authors_create:
+  path: /dashboard/authors/create
+  controller: App\Controller\DashboardController::authorsCreate
+
+dashboard_authors_update:
+  path: /dashboard/authors/update
+  controller: App\Controller\DashboardController::authorsUpdate
+
 
 
 
