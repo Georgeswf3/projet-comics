@@ -49,7 +49,7 @@ header{
 }
   
 .element-middle-bottom button:nth-child(1n){
-    width:150px;
+    width:120px;
     height:45px;
     background-color:red;
     border:0px;
