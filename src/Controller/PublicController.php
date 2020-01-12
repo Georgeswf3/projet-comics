@@ -8,6 +8,7 @@ use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class PublicController extends AbstractController
 {
     private $articleRepo;
