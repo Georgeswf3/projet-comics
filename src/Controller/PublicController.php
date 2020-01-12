@@ -44,8 +44,10 @@ class PublicController extends AbstractController
         return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts]);
     }
 
-    public function fanArt($id)
+    public function fanArt($slug)
     {
+        $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
+        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt]);
     }
 
     public function signup()

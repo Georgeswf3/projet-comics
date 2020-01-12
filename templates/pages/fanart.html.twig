@@ -1,8 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Liste des articles</h1>
+{   <div class="container mb-5 mt-5">
+
+       <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
 
 
+     <img src="{{ fanArt.fanArtSketch }}" alt="Sketch Fan-Art">
+     <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
+
+    </div>
 
 
 

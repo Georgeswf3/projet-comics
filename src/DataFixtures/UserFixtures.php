@@ -9,6 +9,7 @@ use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class UserFixtures extends Fixture
 {
@@ -24,8 +25,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $slugger = new AsciiSlugger();
 
         // $user -> $user4 -> création utilisateur administrateur
         // $user5 -> test création utilisateur lambda
@@ -105,7 +105,7 @@ class UserFixtures extends Fixture
             $fanArt->setFanArtSketch($this->faker->imageUrl($width = 640, $height = 480, 'cats', true, 'Faker'));
             $fanArt->setUserId($user);
             $fanArt->setIsConfirmed(true);
-//            $fanArt->setSlug(strtolower($slugger->slug($article->getTitle())));
+            $fanArt->setSlug(strtolower($slugger->slug($fanArt->getFanArtTitle())));
 
 
             $manager->persist($fanArt);

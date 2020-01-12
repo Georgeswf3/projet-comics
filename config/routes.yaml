@@ -27,7 +27,7 @@ fanArts:
   controller: App\Controller\PublicController::fanArts
 
 fanArt:
-  path: /fanArt/{id}
+  path: /fanArt/{slug}
   controller: App\Controller\PublicController::fanArt
 
 create_users:

@@ -59,6 +59,11 @@ class FanArt
      */
     private $editor_id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -195,6 +200,18 @@ class FanArt
         if ($this->editor_id->contains($editorId)) {
             $this->editor_id->removeElement($editorId);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
