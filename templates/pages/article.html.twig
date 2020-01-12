@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+        <div class="container mb-5 mt-5">
 
+            <h1 class="mb-5">{{article.title}}</h1>
 
+            <h3 class="mb-5">{{ article.hook }}</h3>
+
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
 
 {% endblock %}
