@@ -120,6 +120,8 @@ class DashboardController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute("dashboard_home");
         }
+        return $this->render("dashboard/pages/dashboard_create_authors.html.twig", ["authorForm" => $form->createView()]);
+
     }
 
     public function authorsUpdate()

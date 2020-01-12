@@ -15,7 +15,7 @@ class JobType extends AbstractType
             ->add('job_writer')
             ->add('job_penciler')
             ->add('job_inker')
-            ->add('author_id')
+//            ->add('author_id')
         ;
     }
 

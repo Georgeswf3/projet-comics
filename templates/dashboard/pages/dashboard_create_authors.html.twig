@@ -4,7 +4,7 @@
 
 
 
-    <h1 class="mt-5">Créer un artiste : </h1>
+    <h1 class="mt-5">Rajouter un artiste : </h1>
 
 
     {{ form_start(authorForm) }}
@@ -23,9 +23,6 @@
                 {{ form_row(authorForm.author_image, {'attr': {class : "form-control"}}) }}
             </div>
             <div class="col-12 mt-5">
-                {{ form_row(authorForm.creation_image, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-12 mt-5">
                 {{ form_row(authorForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
             </div>
 
@@ -33,5 +30,5 @@
     </div>
 
 
-    {{ form_end(articleForm) }}
+    {{ form_end(authorForm) }}
 {% endblock %}
