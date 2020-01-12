@@ -5,7 +5,13 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Author;
+use App\Entity\Editor;
+use App\Entity\Job;
 use App\Form\ArticleType;
+use App\Form\AuthorType;
+use App\Form\EditorType;
+use App\Form\JobType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,23 +36,11 @@ class DashboardController extends AbstractController
 
     public function articleCreate(Request $request)
     {
-        $slugger = new AsciiSlugger();
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $article = $form->getData();
-            $actualTitle = $article->getTitle();
-            $slug = strtolower($slugger->slug($actualTitle));
-            $article->setSlug($slug);
-
-//            $image = $form['image']->getData();
-//            if($image){
-//                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-//                $newUniqueFileName = $originalFileName."-".uniqid().'.'.$image->guessExtension();
-//                $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
-//                $article->setImage($newUniqueFileName);
-//            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
@@ -73,24 +67,59 @@ class DashboardController extends AbstractController
     {
     }
 
-    public function editorsCreate()
+    public function editorsCreate(Request $request)
     {
+        $editor = new Editor();
+        $form = $this->createForm(EditorType::class, $editor);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $editor = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($editor);
+            $entityManager->flush();
+            return $this->redirectToRoute("dashboard_home");
+        }
+        return $this->render("dashboard/pages/dashboard_create_editor.html.twig", ["editorForm" => $form->createView()]);
+
     }
 
     public function editorsUpdate()
     {
     }
 
-    public function jobsCreate()
+    public function jobsCreate(Request $request)
     {
+        $job = new Job();
+        $form = $this->createForm(JobType::class, $job);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $job = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($job);
+            $entityManager->flush();
+            return $this->redirectToRoute("dashboard_home");
+        }
+
+        return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
+
     }
 
     public function jobsUpdate()
     {
     }
 
-    public function authorsCreate()
+    public function authorsCreate(Request $request)
     {
+        $author = new Author();
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $author = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($author);
+            $entityManager->flush();
+            return $this->redirectToRoute("dashboard_home");
+        }
     }
 
     public function authorsUpdate()

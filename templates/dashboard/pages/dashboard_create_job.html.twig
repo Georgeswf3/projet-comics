@@ -1,7 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1 class="mt-5">Créer un job : </h1>
 
+
+    {{ form_start(jobForm) }}
+    <div class="form-group mt-5">
+        <div class="row">
+            <div class="col-12 mt-5">
+                {{ form_row(jobForm.job_writer, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
+                {{ form_row(jobForm.job_penciler, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
+                {{ form_row(jobForm.job_inker, {'attr': {class : "form-control"}}) }}
+            </div>
+        </div>
+        <div class="col-12 mt-5">
+            {{ form_row(jobForm.author_id, {'attr': {class : "form-control"}} ) }}
+        </div>
+    </div>
+
+
+    {{ form_end(jobForm) }}
 
 
 
