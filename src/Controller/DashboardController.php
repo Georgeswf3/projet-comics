@@ -74,13 +74,14 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/pages/dashboard_update_fanArt.html.twig', ['fanArtUpdateForm' => $form->createView()]);
     }
 
-    public function userUpdate(Request $request, $pseudo)
+    public function userUpdate(Request $request, Security $security)
     {
-        $user = $this->userRepository->find($pseudo);
+        $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
         $form = $this->createForm(UserFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $user = $form->getData();
+            $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

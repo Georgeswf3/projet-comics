@@ -28,7 +28,7 @@ class FanArtRepository extends ServiceEntityRepository
         return $pages;
     }
 
-    private function paginate($dql, $page = 1, $limit = 3){
+    private function paginate($dql, $page = 1, $limit = 6){
         $paginator = new Paginator($dql);
         $paginator->getQuery()
             ->setFirstResult($limit * ($page - 1))

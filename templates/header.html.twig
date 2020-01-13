@@ -12,8 +12,8 @@
             </div>
             <div class="element-middle-bottom">
                 <button><a href="/">Accueil</a></button>
-                <button><a href="{{ path ("articles")}}">Artistes</a></button>
-                <button><a href="{{ path ("fanArts") }}">Fan Arts</a></button>
+                <button><a href="{{ path ("articles", {from : 1})}}">Artistes</a></button>
+                <button><a href="{{ path ("fanArts", {from : 1})}}">Fan Arts</a></button>
                 {% if not app.user %}
                     <button><a href="{{ path('create_users') }}">S'inscrire</a> </button>
                     {% else %}
