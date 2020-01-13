@@ -39,8 +39,10 @@ class PublicController extends AbstractController
 
     }
 
-    public function article($id)
+    public function article($slug)
     {
+        $article = $this->articleRepo->findOneBy(["slug" => $slug]);
+        return $this-> render('pages/article.html.twig', ["article" => $article]);
     }
 
     public function fanArts(Request $request)

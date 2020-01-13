@@ -19,7 +19,7 @@ articles:
   controller: App\Controller\PublicController::articles
 
 article:
-  path: /article/{id}
+  path: /article/{slug}
   controller: App\Controller\PublicController::article
 
 fanArts:
