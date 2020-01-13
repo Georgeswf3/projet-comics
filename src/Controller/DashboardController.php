@@ -5,7 +5,9 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Editor;
 use App\Form\ArticleType;
+use App\Form\EditorType;
 use App\Form\FanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
@@ -39,24 +41,24 @@ class DashboardController extends AbstractController
 
     public function articleCreate(Request $request, Security $security)
     {
-//        $slugger = new AsciiSlugger();
+        $slugger = new AsciiSlugger();
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $article = $form->getData();
-//            $actualTitle = $article->getTitle();
-//            $slug = strtolower($slugger->slug($actualTitle));
-//            $article->setSlug($slug);
+            $actualTitle = $article->getArticleTitle();
+            $slug = strtolower($slugger->slug($actualTitle));
+            $article->setSlug($slug);
             //récupérer mon user dans la BDD
-//            $author = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-//            $article->setAuthor($author);
+            $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $article->setUserId($user);
 
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
-            return $this->redirectToRoute("dashboard_home");
+            return $this->redirectToRoute("home");
         }
 
         return $this->render("dashboard/pages/dashboard_create_article.html.twig", ["articleForm" => $form->createView()]);
@@ -123,7 +125,7 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($editor);
             $entityManager->flush();
-            return $this->redirectToRoute("dashboard_home");
+            return $this->redirectToRoute("home");
         }
         return $this->render("dashboard/pages/dashboard_create_editor.html.twig", ["editorForm" => $form->createView()]);
 
