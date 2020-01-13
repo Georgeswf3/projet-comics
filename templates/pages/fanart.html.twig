@@ -12,6 +12,26 @@
 
     </div>
 
+    <div class="container mb-5 mt-5">
+
+        <h3>Ajouter un commentaire</h3>
+
+        {{ form_start(commentForm) }}
+        <div class="col-12">
+            {{ form_row(commentForm.comment_fan_art, {'attr': {class : "form-control"}}) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(commentForm.isConfirmed, {'attr': {class : "form-control"}}) }}
+        </div>
+
+        <div class="col-6">
+            {{ form_row(commentForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+        </div>
+        {{ form_end(commentForm) }}
+
+    </div>
+
 
 
 {% endblock %}

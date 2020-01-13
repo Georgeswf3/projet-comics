@@ -4,9 +4,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Comment;
 use App\Entity\User;
+use App\Form\CommentFanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Repository\FanArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +20,14 @@ class PublicController extends AbstractController
 {
     private $articleRepo;
     private $fanArtRepo;
+    private $commentRepo;
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository )
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
-
+        $this->commentRepo = $commentRepository;
     }
 
     public function index()
@@ -50,10 +55,25 @@ class PublicController extends AbstractController
         return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts, "from" => $from]);
     }
 
-    public function fanArt($slug)
+    public function fanArt(Request $request, $slug)
     {
         $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
-        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt]);
+
+        $comments = new Comment();
+        $form = $this->createForm(CommentFanArtType::class, $comments);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()) {
+            $comments = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comments);
+            $entityManager->flush();
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt, 'commentForm' => $form->createView()]);
     }
 
     public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
