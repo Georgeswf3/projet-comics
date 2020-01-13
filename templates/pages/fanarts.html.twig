@@ -6,34 +6,35 @@
         <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
     {% endblock %}
 
-    <div class="row">
-        <div class="col-2">
-            {% include "pages/parts/sidebar.html.twig" %}
-        </div>
-
-    <div class="contenuElements">
-        {% for fanArt in fanArts %}
-            <div class="elements">
-                <p>{{ fanArt.fanArtTitle }}</p>
-                <img src="{{ fanArt.fanArtSketch }}"></img>
-                <div class="text">
-                    <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+<div class="row">
+    <div class="col-2">
+        {% include "pages/parts/sidebar.html.twig" %}
+    </div>
+    <div class="col-10">
+        <div class="contenuElements">
+            {% for fanArt in fanArts %}
+                <div class="elements">
+                    <p>{{ fanArt.fanArtTitle }}</p>
+                    <img src="{{ fanArt.fanArtSketch }}"></img>
+                    <div class="text">
+                        <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
-    </div>
 
-    <div class="row justify-content-around">
-        <div class="col-3">
-            {% if from > 1 %}
-                <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
-            {% endif %}
-        </div>
-        <div class="col-3">
-            <a style="text-align: end" href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+        <div class="row justify-content-between"style="background-color:green;">
+            <div class="col-3">
+                {% if from > 1 %}
+                    <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <a style="text-align: end" href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+            </div>
         </div>
     </div>
+</div>
 
 
 {% endblock %}
