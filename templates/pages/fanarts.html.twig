@@ -6,21 +6,26 @@
         <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
     {% endblock %}
 
-    {% include "pages/parts/sidebar.html.twig" %}
+    <div class="row">
+        <div class="col-2">
+            {% include "pages/parts/sidebar.html.twig" %}
+        </div>
 
-    <div class="contenuElements">
-        {% for fanArt in fanArts %}
-            <div class="elements">
-                <p>{{ fanArt.fanArtTitle }}</p>
-                <img src="{{ fanArt.fanArtSketch }}"></img>
-                <div class="text">
-                    <p>{{ fanArt.fanArtHook }}</p>
+        <div class="col-10">
+            <div class="contenuElements">
+            {% for fanArt in fanArts %}
+                <div class="elements">
+                    <p>{{ fanArt.fanArtTitle }}</p>
+                    <img src="{{ fanArt.fanArtSketch }}"></img>
+                    <div class="text">
+                        <p>{{ fanArt.fanArtHook }}</p>
+                    </div>
+                    {# <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a> #}
                 </div>
-                <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-
-
-
 {% endblock %}
+
+{# Problème row #}
