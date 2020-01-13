@@ -17,7 +17,7 @@
                 {% if not app.user %}
                     <button><a href="{{ path('create_users') }}">S'inscrire</a> </button>
                     {% else %}
-                    <button><a href="{{ path('dashboard_user_update') }}">Compte</a></button>
+                    <button><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
                 {% endif %}
                 
             </div>

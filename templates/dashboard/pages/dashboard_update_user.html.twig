@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="mt-5">Modifier profil : </h1>
+
+
+    {{ form_start(userUpdateForm) }}
+    <div class="form-group mt-5">
+        <div class="row">
+            <div class="col-6 mt-5">
+                {{ form_row(userUpdateForm.email, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-6 mt-5 .text-center">
+                {{ form_row(userUpdateForm.password, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
+                {{ form_row(userUpdateForm.pseudo, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
+                {{ form_row(userUpdateForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
+            </div>
+
+        </div>
+    </div>
+
+
+    {{ form_end(userUpdateForm) }}
+
+{% endblock %}
