@@ -6,36 +6,53 @@
         <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
     {% endblock %}
 
-    <div class="row">
-        <div class="col-2">
-            {% include "pages/parts/sidebar.html.twig" %}
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                {% include "pages/parts/sidebar.html.twig" %}
+            </div>
 
-        <div class="col-10">
-            <div class="contenuElements">
-                {% for fanArt in fanArts %}
-                    <div class="elements">
-                        <p>{{ fanArt.fanArtTitle }}</p>
-                        <img src="{{ fanArt.fanArtSketch }}" alt="">
-                        <div class="text">
-                            <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+            <div class="col-10">
+                <div class="row justify-content-center col-auto mt-5">
+                    {% for fanArt in fanArts %}
+                        <div class="elements mt-3 ml-4">
+                            <p>{{ fanArt.fanArtTitle }}</p>
+                            <img src="{{ fanArt.fanArtSketch }}" alt="">
+                            <div class="text">
+                                <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+                            </div>
+                            <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
                         </div>
-                        <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
+                    {% endfor %}
+                </div>
+            
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-6" style="background-color:yellow">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4" style="background-color:green">
+                                        {% if from > 1 %}
+                                            <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" style="background-color:red">
+                            <div class="container">
+                                <div class="row align-items-end">
+                                    <div class="col-4" style="background-color:green">
+                                        <a href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="row justify-content-between" style="background-color:green;">
-        <div class="col-6">
-            {% if from > 1 %}
-                <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
-            {% endif %}
-        </div>
-        <div class="col-6">
-            <a style="text-align: end" href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
-        </div>
-    </div>
+            
 
 {% endblock %}

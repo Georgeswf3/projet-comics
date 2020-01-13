@@ -1,11 +1,3 @@
-.contenuElements{
-    height:800px;
-    margin-top:60px;
-    background-color:red;
-    /* display:flex;
-    flex-direction:row; */
-}
-
 .elements{
     height:350px;
     background-color: rgb(212, 212, 212);
