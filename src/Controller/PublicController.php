@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\User;
+use App\Form\ArticleType;
+use App\Form\CommentArticleType;
 use App\Form\CommentFanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
@@ -45,13 +47,25 @@ class PublicController extends AbstractController
     {
         $articles = $this->articleRepo->findAll();
         return $this->render('pages/articles.html.twig', ["articles" => $articles]);
+        $articles = $this->articleRepo->findPaginatedArticles($from);
 
     }
 
-    public function article($slug)
+    public function article(Request $request, $slug)
     {
         $article = $this->articleRepo->findOneBy(["slug" => $slug]);
-        return $this-> render('pages/article.html.twig', ["article" => $article]);
+        $comment = new Comment();
+        $form = $this->createForm(CommentArticleType::class, $comment);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $comment = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute("home");
+        }
+        return $this-> render('pages/article.html.twig', ["article" => $article, "commentForm" => $form -> createView()]);
     }
 
     public function fanArts(Request $request)

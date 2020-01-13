@@ -6,31 +6,53 @@
         <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
     {% endblock %}
 
-    {% include "pages/parts/sidebar.html.twig" %}
-
-    <div class="contenuElements">
-        {% for fanArt in fanArts %}
-            <div class="elements">
-                <p>{{ fanArt.fanArtTitle }}</p>
-                <img src="{{ fanArt.fanArtSketch }}" alt="">
-                <div class="text">
-                    <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
-                </div>
-                <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                {% include "pages/parts/sidebar.html.twig" %}
             </div>
-        {% endfor %}
-    </div>
 
-    <div class="row justify-content-around">
-        <div class="col-3">
-            {% if from > 1 %}
-                <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
-            {% endif %}
-        </div>
-        <div class="col-3">
-            <a style="text-align: end" href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+            <div class="col-10">
+                <div class="row justify-content-center col-auto mt-5">
+                    {% for fanArt in fanArts %}
+                        <div class="elements mt-3 ml-4">
+                            <p>{{ fanArt.fanArtTitle }}</p>
+                            <img src="{{ fanArt.fanArtSketch }}" alt="">
+                            <div class="text">
+                                <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+                            </div>
+                            <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
+                                        {% if from > 1 %}
+                                            <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="container">
+                                <div class="row row justify-content-center">
+                                    <div class="col-4">
+                                        <a href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
+            
 
 {% endblock %}
