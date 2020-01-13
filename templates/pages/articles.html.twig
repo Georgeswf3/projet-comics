@@ -18,11 +18,11 @@
     <div class="contenuElements">
         {% for article in articles %}
             <div class="elements">
-                <p>{{ articles.articleTitle }}</p>
+                <p>{{ article.articleTitle }}</p>
                 <div class="text">
-                    <p>{{ articles.articleText }}</p>
+                    <p>{{ article.articleText }}</p>
                 </div>
-                <a href="{{ path("articles", {slug : article.slug}) }}" class="btn btn-secondary">Voir</a>
+                <a href="{{ path("article", {slug : article.slug}) }}" class="btn btn-secondary">Voir</a>
             </div>
         {% endfor %}
     </div>
