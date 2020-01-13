@@ -2,12 +2,30 @@
 
 {% block body %}
 
-    {% include "pages/parts/sidebar.html.twig" %}
+    {#{% include "pages/parts/sidebar.html.twig" %}
 
     {% for article in articles %}
         <p>{{ article.articleTitle }}</p>
         <p>{{ article.articleText }}</p>
-        {# <p>{{ article.articleDate }}</p> #}
-    {% endfor %}
+        #}{# <p>{{ article.articleDate }}</p> #}{#
+    {% endfor %}#}
+    {% block styleFanArts %}
+        <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
+    {% endblock %}
+
+    {% include "pages/parts/sidebar.html.twig" %}
+
+    <div class="contenuElements">
+        {% for article in articles %}
+            <div class="elements">
+                <p>{{ article.articleTitle }}</p>
+                <div class="text">
+                    <p>{{ article.articleText }}</p>
+                </div>
+                <a href="{{ path("article", {slug : article.slug}) }}" class="btn btn-secondary">Voir</a>
+            </div>
+        {% endfor %}
+    </div>
+
 
 {% endblock %}

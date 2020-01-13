@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1 class="mt-5">Ajouter un éditeur : </h1>
 
+
+    {{ form_start(editorForm) }}
+    <div class="form-group mt-5">
+        <div class="row">
+            <div class="col-12 mt-5">
+                {{ form_row(editorForm.editor_brand, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
+                {{ form_row(editorForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+            </div>
+        </div>
+    </div>
+
+
+    {{ form_end(editorForm) }}
 
 
 
