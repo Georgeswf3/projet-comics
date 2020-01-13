@@ -7,13 +7,45 @@
     {% endblock %}
 
     {% if app.user %}
-    <h4 class="centrer">{{ app.user.pseudo }}</h4>
+        <h4 class="centrer">{{ app.user.pseudo }}</h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ app.user.avatarImage }}" alt="">
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li>Nom: {{ app.user.lastName }}</li>
+                        <li>Prénom: {{ app.user.firstName }}</li>
+                    </ul>
+                </div>
+            </div>
+            {#{% if article.userId == app.user %}
+                <p><a href="{{ path('article', {'id': 'x'}) }}"></a>{{ article.articleTitle }}</p>
+            {% endif %}#}
+        </div>
     {% endif %}
 
 
-    <div class="contenuPresentation">
-        <p>Présentation</p>
-        <p>Bonjour à tous et bienvenue sur ma page. Comme vous l'avez vu, c'est un site qui va parler de Comics. Pas de tous les comics non, je n'ai ni la prétention de tous les connaître ni de tous les lire, juste les comics que j'aime ou que j'ai aimé. Les Comics mais aussi les dessinateurs. Alors je sais qu'on va me dire qu'il en manque des tonnes mais je n'ai pas dit que je serais exhaustif, non plus. D'ailleurs mon but est plus que nous partagions nos connaissances et nos dessins pour ceux qui aiment "gribouiller" à l'occasion. Nous pourrons échanger nos avis et même nos dessins oldies ou récents, mais toujours dans le respect des goûts de chacun. Je serais intransigeant là-dessus! Ne soyez pas étonné non plus de voir beaucoup de "vieux" comics. J'avoue ne plus être autant accroc que j'ai pu l'être, pour x ou y raisons, je suis toujours l'actualité autant que possible car ça reste une passion pour moi mais dans la vie on doit faire des choix et économiquement je ne pouvais plus m'éparpiller de partout. Autre chose, si vous trouvez des news et actus sympas partagez les moi dans la rubrique Articles et si le site rencontre un peu de succès il n'est pas exclu que j'y intègre un forum, à voir. si vous poubliez des articles essayez d'y mettre des sources si possible ou de préciser si ce sont des rumeurs. Allez sur ce, enjoy et partagez vos avis!!</p>
-    </div>
-    
+
+    {% if not app.user %}
+        <div class="contenuPresentation">
+            <p>Présentation</p>
+            <p>Bonjour à tous et bienvenue sur ma page. Comme vous l'avez vu, c'est un site qui va parler de Comics. Pas
+                de tous les comics non, je n'ai ni la prétention de tous les connaître ni de tous les lire, juste les
+                comics que j'aime ou que j'ai aimé. Les Comics mais aussi les dessinateurs. Alors je sais qu'on va me
+                dire qu'il en manque des tonnes mais je n'ai pas dit que je serais exhaustif, non plus. D'ailleurs mon
+                but est plus que nous partagions nos connaissances et nos dessins pour ceux qui aiment "gribouiller" à
+                l'occasion. Nous pourrons échanger nos avis et même nos dessins oldies ou récents, mais toujours dans le
+                respect des goûts de chacun. Je serais intransigeant là-dessus! Ne soyez pas étonné non plus de voir
+                beaucoup de "vieux" comics. J'avoue ne plus être autant accroc que j'ai pu l'être, pour x ou y raisons,
+                je suis toujours l'actualité autant que possible car ça reste une passion pour moi mais dans la vie on
+                doit faire des choix et économiquement je ne pouvais plus m'éparpiller de partout. Autre chose, si vous
+                trouvez des news et actus sympas partagez les moi dans la rubrique Articles et si le site rencontre un
+                peu de succès il n'est pas exclu que j'y intègre un forum, à voir. si vous poubliez des articles essayez
+                d'y mettre des sources si possible ou de préciser si ce sont des rumeurs. Allez sur ce, enjoy et
+                partagez vos avis!!</p>
+        </div>
+    {% endif %}
+
 {% endblock %}
