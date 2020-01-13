@@ -14,13 +14,23 @@
                 <p>{{ fanArt.fanArtTitle }}</p>
                 <img src="{{ fanArt.fanArtSketch }}"></img>
                 <div class="text">
-                    <p>{{ fanArt.fanArtHook }}</p>
+                    <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
                 </div>
                 <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
             </div>
         {% endfor %}
     </div>
 
+    <div class="row justify-content-around">
+        <div class="col-3">
+            {% if from > 1 %}
+                <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+            {% endif %}
+        </div>
+        <div class="col-3">
+            <a style="text-align: end" href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+        </div>
+    </div>
 
 
 {% endblock %}
