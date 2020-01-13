@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\FanArt;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method FanArt|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,24 @@ class FanArtRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, FanArt::class);
     }
+
+    public function findPaginatedFanArts($from){
+        $query = $this->createQueryBuilder("fa")
+            ->orderBy("fa.id", "DESC")
+            ->getQuery();
+        $pages = $this->paginate($query, $from);
+        return $pages;
+    }
+
+    private function paginate($dql, $page = 1, $limit = 3){
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+        return $paginator;
+    }
+
+
 
     // /**
     //  * @return FanArt[] Returns an array of FanArt objects
