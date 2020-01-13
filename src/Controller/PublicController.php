@@ -39,19 +39,20 @@ class PublicController extends AbstractController
     {
         $articles = $this->articleRepo->findAll();
         return $this->render('pages/articles.html.twig', ["articles" => $articles]);
+        $articles = $this->articleRepo->findPaginatedArticles($from);
 
     }
 
-    public function article($slug)
+    public function article(Request $request, $slug)
     {
         $article = $this->articleRepo->findOneBy(["slug" => $slug]);
         $comment = new Comment();
         $form = $this->createForm(CommentArticleType::class, $comment);
-        $form->handleRequest($comment);
+        $form->handleRequest($request);
         if($form->isSubmitted()){
             $comment = $form->getData();
         }
-        return $this-> render('pages/article.html.twig', ["article" => $article, "commentArticleType" => $form -> createView()]);
+        return $this-> render('pages/article.html.twig', ["article" => $article, "commentForm" => $form -> createView()]);
     }
 
     public function fanArts(Request $request)
