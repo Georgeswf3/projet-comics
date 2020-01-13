@@ -50,7 +50,6 @@ class DashboardController extends AbstractController
             $actualTitle = $article->getArticleTitle();
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
-            //récupérer mon user dans la BDD
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
             $article->setUserId($user);
 
@@ -66,13 +65,17 @@ class DashboardController extends AbstractController
 
     public function articleUpdate(Request $request,Security $security, $id)
     {
+        $slugger = new AsciiSlugger();
         $article = $this->articleRepository->find($id);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $article = $form->getData();
-            $author = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-            $article->setAuthor($author);
+            $actualTitle = $article->getArticleTitle();
+            $slug = strtolower($slugger->slug($actualTitle));
+            $article->setSlug($slug);
+            $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $article->setUserId($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
