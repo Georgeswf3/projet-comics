@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Editor;
+use App\Entity\FanArt;
 use App\Form\ArticleType;
 use App\Form\EditorType;
 use App\Form\FanArtType;
@@ -84,10 +85,10 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/pages/dashboard_update_article.html.twig', ['articleUpdateForm' => $form->createView()]);
     }
 
-    public function fanArtsCreate(Request $request, Security $security, $id)
+    public function fanArtsCreate(Request $request, Security $security)
     {
         $slugger = new AsciiSlugger();
-        $fanart = $this->fanArtRepository->find($id);
+        $fanart = new FanArt();
         $form = $this->createForm(FanArtType::class, $fanart);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
@@ -97,25 +98,48 @@ class DashboardController extends AbstractController
             $fanart->setSlug($slug);
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
             $fanart->setUserId($user);
+
+            $image = $form['fan_art_sketch']->getData();
+            if ($image){
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $newUniqueFileName = $originalFileName.'-'.uniqid().'.'.$image->guessExtension();
+                $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
+                $fanart->setFanArtSketch($newUniqueFileName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($fanart);
             $entityManager->flush();
-            return $this->redirectToRoute('fanArts');
+            return $this->redirectToRoute('home');
         }
         return $this->render('dashboard/pages/dashboard_create_fanArt.html.twig',['FanArtForm' =>$form->createView()]);
     }
 
-    public function fanArtsUpdate(Request $request, $id)
+    public function fanArtsUpdate(Request $request, Security $security, $id)
     {
+        $slugger = new AsciiSlugger();
         $fanArt = $this->fanArtRepository->find($id);
         $form = $this->createForm(FanArtType::class, $fanArt);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $fanArt = $form->getData();
+
+            $actualTitle = $fanArt->getFanArtTitle();
+            $slug = strtolower($slugger->slug($actualTitle));
+            $fanArt->setSlug($slug);
+            $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $fanArt->setUserId($user);
+
+            $image = $form['fan_art_sketch']->getData();
+            if ($image){
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $newUniqueFileName = $originalFileName.'-'.uniqid().'.'.$image->guessExtension();
+                $image->move($this->getParameter('uploaded-images'), $newUniqueFileName);
+                $fanArt->setFanArtSketch($newUniqueFileName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($fanArt);
             $entityManager->flush();
-            return $this->redirectToRoute('fanArts');
+            return $this->redirectToRoute('home');
         }
         return $this->render('dashboard/pages/dashboard_update_fanArt.html.twig', ['fanArtUpdateForm' => $form->createView()]);
     }
