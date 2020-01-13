@@ -51,6 +51,11 @@ class PublicController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $comment = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute("home");
         }
         return $this-> render('pages/article.html.twig', ["article" => $article, "commentForm" => $form -> createView()]);
     }

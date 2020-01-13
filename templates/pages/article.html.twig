@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{#    <h1>Liste des articles</h1>#}
-{#    <div class="container mb-5 mt-5">#}
-{#        <h1 class="mb-5">{{ article.articleTitle }}</h1>#}
-{#        <a class="mb-5">{{ article.articleText }}</a>#}
-{#    </div>#}
+    <h1>Liste des articles</h1>
+    <div class="container mb-5 mt-5">
+        <h1 class="mb-5">{{ article.articleTitle }}</h1>
+        <a class="mb-5">{{ article.articleText }}</a>
+    </div>
 
    {{ form_start(commentForm) }}
         <div class="form-group mt-5">
@@ -14,13 +14,10 @@
                     {{ form_row(commentForm.comment_article, {'attr': {class : "form-control"}}) }}
                 </div>
                 <div class="col-12 mt-5">
-                    {{ form_row(commentForm.userId, {'attr': {class : "form-control"}}) }}
-                </div>
-                <div class="col-12 mt-5">
                     {{ form_row(commentForm.isConfirmed, {'attr': {class : "form-control"}}) }}
                 </div>
                 <div class="col-12 mt-5">
-                    {{ form_row(commentForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+                    {{ form_row(commentForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
                 </div>
             </div>
         </div>
@@ -29,10 +26,11 @@
 {#    <div class="card" style="width: 18rem;">#}
 {#        <div class="card-body">#}
 {#            {% for comment in article.comments %}#}
-{#        </div>#}
 {#        <div class="row">#}
 {#            <p class="card-text">{{ comment.commentText }}</p>#}
 {#            <a href="#" class="card-link">{{ comment.userId }}</a>#}
+{#        </div>#}
+{#            {% endfor %}#}
 {#        </div>#}
 {#    </div>#}
 {#    <button><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>#}
