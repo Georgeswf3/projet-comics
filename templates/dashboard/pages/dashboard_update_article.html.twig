@@ -8,19 +8,11 @@
     <div class="form-group mt-5">
         <div class="row">
             <div class="col-6 mt-5">
-                {{ form_row(articleUpdateForm.fan_art_title, {'attr': {class : "form-control"}}) }}
+                {{ form_row(articleUpdateForm.article_title, {'attr': {class : "form-control"}}) }}
             </div>
             <div class="col-6 mt-5 .text-center">
-                {{ form_row(articleUpdateForm.fan_art_hook, {'attr': {class : "form-control"}}) }}
+                {{ form_row(articleUpdateForm.article_text, {'attr': {class : "form-control"}}) }}
             </div>
-            <div class="col-12 mt-5">
-                {{ form_row(articleUpdateForm.fan_art_sketch, {'attr': {class : "form-control"}}) }}
-            </div>
-            {% if app.user.roles == 'ROLE_ADMIN' %}
-                <div class="col-12 mt-5">
-                    {{ form_row(articleUpdateForm.isConfirmed, {'attr': {class : "form-control"}}) }}
-                </div>
-            {% endif %}
             <div class="col-12 mt-5">
                 {{ form_row(articleUpdateForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
             </div>

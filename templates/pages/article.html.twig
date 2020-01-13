@@ -16,6 +16,6 @@
             <a href="#" class="card-link">{{ comment.userId }}</a>
         </div>
     </div>
-
+    <button><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
 
 {% endblock %}
