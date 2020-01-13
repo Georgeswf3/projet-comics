@@ -28,10 +28,10 @@
             
                 <div class="container mt-3">
                     <div class="row">
-                        <div class="col-6" style="background-color:yellow">
+                        <div class="col-6">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-4" style="background-color:green">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
                                         {% if from > 1 %}
                                             <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
                                         {% endif %}
@@ -39,10 +39,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6" style="background-color:red">
+                        <div class="col-6">
                             <div class="container">
-                                <div class="row align-items-end">
-                                    <div class="col-4" style="background-color:green">
+                                <div class="row row justify-content-center">
+                                    <div class="col-4">
                                         <a href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
                                     </div>
                                 </div>
