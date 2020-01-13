@@ -18,17 +18,17 @@
             </div>
             {% if app.user.roles == 'ROLE_ADMIN' %}
                 <div class="col-12 mt-5">
-                    {{ form_row(fanArtUpdateForm.isConfirmed, {'attr': {class : "form-control"}}) }}
+                    {{ form_row(userUpdateForm.isConfirmed, {'attr': {class : "form-control"}}) }}
                 </div>
             {% endif %}
             <div class="col-12 mt-5">
-                {{ form_row(fanArtUpdateForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+                {{ form_row(userUpdateForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
             </div>
 
         </div>
     </div>
 
 
-    {{ form_end(fanArtUpdateForm) }}
+    {{ form_end(userUpdateForm) }}
 
 {% endblock %}

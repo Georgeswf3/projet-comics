@@ -4,4 +4,7 @@
 
 <div class="sideBar">
 
+    {% if app.user == article.userId %}
+    <button><a href="{{ path('dashboard_fanArts_update') }}"></a></button>
+    {% endif %}
 </div>

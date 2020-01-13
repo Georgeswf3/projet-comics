@@ -51,11 +51,11 @@ dashboard_fanArts_create:
   controller: App\Controller\DashboardController::fanArtsCreate
 
 dashboard_fanArts_update:
-  path: /dashboard/fanArts/update/{$id}
+  path: /dashboard/fanArts/update/{id}
   controller: App\Controller\DashboardController::fanArtsUpdate
 
 dashboard_user_update:
-  path: /dashboard/user/update/{$pseudo}
+  path: /dashboard/user/update/{pseudo}
   controller: App\Controller\DashboardController::userUpdate
 
 dashboard_editors_create:

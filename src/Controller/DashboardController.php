@@ -29,9 +29,9 @@ class DashboardController extends AbstractController
     }
 
 
-    public function homeAction(Request $request,Security $security,Article $id)
+    public function homeAction(Request $request, Security $security, Article $id)
     {
-        $article = $this->userRepository->findBy(['id'=>$id->getUserId()]);
+        $article = $this->userRepository->findBy(['id' => $id->getUserId()]);
         $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
         return $this->render('home.html.twig', ["user" => $user, "article" => $article]);
     }
@@ -42,17 +42,17 @@ class DashboardController extends AbstractController
 
     public function articleUpdate(Request $request, $id)
     {
-        $article=$this->articleRepository->find($id);
+        $article = $this->articleRepository->find($id);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
-            $article=$form->getData();
+        if ($form->isSubmitted()) {
+            $article = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
             return $this->redirectToRoute('articles');
         }
-        return $this->render('dashboard/pages/dashboard_update_article.html.twig', ['articleUpdateForm'=>$form->createView()]);
+        return $this->render('dashboard/pages/dashboard_update_article.html.twig', ['articleUpdateForm' => $form->createView()]);
     }
 
     public function fanArtsCreate()
@@ -61,32 +61,32 @@ class DashboardController extends AbstractController
 
     public function fanArtsUpdate(Request $request, $id)
     {
-        $fanArt=$this->fanArtRepository->find($id);
+        $fanArt = $this->fanArtRepository->find($id);
         $form = $this->createForm(FanArtType::class, $fanArt);
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
-            $fanArt=$form->getData();
+        if ($form->isSubmitted()) {
+            $fanArt = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($fanArt);
             $entityManager->flush();
             return $this->redirectToRoute('fanArts');
         }
-        return $this->render('dashboard/pages/dashboard_update_fanArt.html.twig', ['fanArtUpdateForm'=>$form->createView()]);
+        return $this->render('dashboard/pages/dashboard_update_fanArt.html.twig', ['fanArtUpdateForm' => $form->createView()]);
     }
 
     public function userUpdate(Request $request, $pseudo)
     {
         $user = $this->userRepository->find($pseudo);
-        $form = $this-> createForm(UserFormType::class, $user);
-        $form -> handleRequest($request);
-        if ($form->isSubmitted()){
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
             $user = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager -> persist($user);
-            $entityManager -> flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('dashboard/pages/dashboard_update_user.html.twig', ['userUpdateForm'=>$form->createView()]);
+        return $this->render('dashboard/pages/dashboard_update_user.html.twig', ['userUpdateForm' => $form->createView()]);
     }
 
     public function editorsCreate()
