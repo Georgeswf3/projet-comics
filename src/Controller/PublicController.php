@@ -11,9 +11,11 @@ use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
 use App\Repository\FanArtRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 
 class PublicController extends AbstractController
@@ -21,13 +23,15 @@ class PublicController extends AbstractController
     private $articleRepo;
     private $fanArtRepo;
     private $commentRepo;
+    private $userRepo;
 
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository )
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
         $this->commentRepo = $commentRepository;
+        $this->userRepo = $userRepository;
     }
 
     public function index()
@@ -57,7 +61,7 @@ class PublicController extends AbstractController
         return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts, "from" => $from]);
     }
 
-    public function fanArt(Request $request, $slug)
+    public function fanArt(Request $request, Security $security, $slug)
     {
         $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
 
@@ -68,6 +72,9 @@ class PublicController extends AbstractController
 
         if($form->isSubmitted()) {
             $comments = $form->getData();
+            $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $comments->setUserId($user);
+            $comments->setFanArtId($fanArt);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comments);
