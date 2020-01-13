@@ -80,7 +80,7 @@ class PublicController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('fanArt', ['slug' => $fanArt->getSlug()]);
         }
 
         return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt, "comments" => $comments, 'commentForm' => $form->createView()]);
