@@ -43,10 +43,11 @@ class PublicController extends AbstractController
     {
     }
 
-    public function fanArts()
+    public function fanArts(Request $request)
     {
-        $fanArts = $this->fanArtRepo->findAll();
-        return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts]);
+        $from = $request->query->get("from");
+        $fanArts = $this->fanArtRepo->findPaginatedFanArts($from);
+        return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts, "from" => $from]);
     }
 
     public function fanArt($slug)
