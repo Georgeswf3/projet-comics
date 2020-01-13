@@ -40,13 +40,15 @@ class DashboardController extends AbstractController
     {
     }
 
-    public function articleUpdate(Request $request, $id)
+    public function articleUpdate(Request $request,Security $security, $id)
     {
         $article = $this->articleRepository->find($id);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $article = $form->getData();
+            $author = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $article->setAuthor($author);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
