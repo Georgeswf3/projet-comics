@@ -33,7 +33,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-4">
                                         {% if from > 1 %}
-                                            <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+                                            <a href="{{path('fanArts', {from : from - 1}) }}" class="btn-lg btn-dark">Précédent</a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                         </div>
                         <div class="col-6">
                             <div class="container">
-                                <div class="row row justify-content-center">
+                                <div class="row justify-content-center">
                                     <div class="col-4">
-                                        <a href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+                                        <a href="{{ path('fanArts', {from : from + 1}) }}" class="btn-lg btn-dark buttons">Suivant</a>
                                     </div>
                                 </div>
                             </div>
