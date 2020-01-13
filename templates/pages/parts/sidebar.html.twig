@@ -4,7 +4,14 @@
 
 <div class="sideBar">
 
-    {#{% if app.user == article.userId %}
-    <button><a href="{{ path('dashboard_fanArts_update') }}"></a></button>
-    {% endif %}#}
+    {% if app.request.get('_route') == 'fanArts' %}
+
+    <a href="{{ path('dashboard_fanArts_create') }}">Créer un fan-art</a>
+
+    {% else %}
+
+        <a href="{{ path('dashboard_articles_create') }}">Créer un article</a>
+
+    {% endif %}
+
 </div>
