@@ -20,7 +20,6 @@ class UserFormType extends AbstractType
             ->add('pseudo')
             ->add('first_name')
             ->add('last_name')
-            ->add('isConfirmed')
             ->add('avatar_image', FileType::class, ['mapped' => false, 'required'=>false])
             ->add('valider', SubmitType::class)
         ;

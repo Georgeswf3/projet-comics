@@ -16,11 +16,6 @@
             <div class="col-12 mt-5">
                 {{ form_row(userUpdateForm.pseudo, {'attr': {class : "form-control"}}) }}
             </div>
-            {% if app.user.roles == 'ROLE_ADMIN' %}
-                <div class="col-12 mt-5">
-                    {{ form_row(userUpdateForm.isConfirmed, {'attr': {class : "form-control"}}) }}
-                </div>
-            {% endif %}
             <div class="col-12 mt-5">
                 {{ form_row(userUpdateForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
             </div>
