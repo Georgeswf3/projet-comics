@@ -16,8 +16,11 @@
                 <div class="text">
                     <p>{{ fanArt.fanArtHook }}</p>
                 </div>
+                <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
             </div>
         {% endfor %}
     </div>
+
+
 
 {% endblock %}

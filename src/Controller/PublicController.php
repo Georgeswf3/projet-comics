@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
 class PublicController extends AbstractController
 {
     private $articleRepo;
@@ -48,8 +49,10 @@ class PublicController extends AbstractController
         return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts]);
     }
 
-    public function fanArt($id)
+    public function fanArt($slug)
     {
+        $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
+        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt]);
     }
 
     public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
