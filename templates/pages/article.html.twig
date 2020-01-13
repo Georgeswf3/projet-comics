@@ -6,13 +6,13 @@
         <h1 class="mb-5">{{ article.articleTitle }}</h1>
         <a class="mb-5">{{ article.articleText }}</a>
     </div>
-    <h3>Commentaires</h3>
+    {#<h3>Commentaires</h3>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="card-link">{{ user_id }}</a>
-        </div>
+        </div>#}
     </div>
-
+    <button><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
 
 {% endblock %}

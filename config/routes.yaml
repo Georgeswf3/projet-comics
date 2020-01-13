@@ -43,7 +43,7 @@ dashboard_articles_create:
   controller: App\Controller\DashboardController::articleCreate
 
 dashboard_articles_update:
-  path: /dashboard/articles/update
+  path: /dashboard/articles/update/{id}
   controller: App\Controller\DashboardController::articleUpdate
 
 dashboard_fanArts_create:
