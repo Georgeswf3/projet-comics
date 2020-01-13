@@ -32,6 +32,28 @@
 
     </div>
 
+    <div class="container mb-5 mt-5">
+
+        <h3>Commentaires : </h3>
+
+        {% for comment in comments %}
+
+            <div>
+                {{ comment.commentFanArt }}
+            </div>
+
+            <div>
+                {{ comment.user }}
+            </div>
+        {% endfor %}
+
+
+
+
+    </div>
+
+
+
 
 
 {% endblock %}

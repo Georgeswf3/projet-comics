@@ -64,25 +64,26 @@ class PublicController extends AbstractController
     public function fanArt(Request $request, Security $security, $slug)
     {
         $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
+        $comments = $this->commentRepo->findAll();
 
-        $comments = new Comment();
-        $form = $this->createForm(CommentFanArtType::class, $comments);
+        $comment = new Comment();
+        $form = $this->createForm(CommentFanArtType::class, $comment);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted()) {
-            $comments = $form->getData();
+            $comment = $form->getData();
             $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
-            $comments->setUserId($user);
-            $comments->setFanArtId($fanArt);
+            $comment->setUserId($user);
+            $comment->setFanArtId($fanArt);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comments);
+            $entityManager->persist($comment);
             $entityManager->flush();
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt, 'commentForm' => $form->createView()]);
+        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt, "comments" => $comments, 'commentForm' => $form->createView()]);
     }
 
     public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
