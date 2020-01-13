@@ -90,7 +90,7 @@ class UserFixtures extends Fixture
             $article->setArticleText($this->faker->realText(200, 2));
             $article->setUserId($user);
             $article->setIsConfirmed(true);
-//            $article->setSlug(strtolower($slugger->slug($article->getTitle())));
+            $article->setSlug(strtolower($slugger->slug($article->getArticleTitle())));
             $article->setArticleDate($this->faker->dateTimeThisDecade);
 
             $manager->persist($article);

@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <h1>Liste des articles</h1>
+    <div class="container mb-5 mt-5">
+        <h1 class="mb-5">{{ article.articleTitle }}</h1>
+        <a class="mb-5">{{ article.articleText }}</a>
+    </div>
+    <h3>Commentaires</h3>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">{{ user_id }}</a>
+        </div>
+    </div>
 
 
 {% endblock %}
