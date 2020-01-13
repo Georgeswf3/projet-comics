@@ -84,8 +84,25 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/pages/dashboard_update_article.html.twig', ['articleUpdateForm' => $form->createView()]);
     }
 
-    public function fanArtsCreate()
+    public function fanArtsCreate(Request $request, Security $security, $id)
     {
+        $slugger = new AsciiSlugger();
+        $fanart = $this->fanArtRepository->find($id);
+        $form = $this->createForm(FanArtType::class, $fanart);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $fanart = $form->getData();
+            $actualTitle = $fanart->getFanArtTitle();
+            $slug = strtolower($slugger->slug($actualTitle));
+            $fanart->setSlug($slug);
+            $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $fanart->setUserId($user);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($fanart);
+            $entityManager->flush();
+            return $this->redirectToRoute('fanArts');
+        }
+        return $this->render('dashboard/pages/dashboard_create_fanArt.html.twig',['FanArtForm' =>$form->createView()]);
     }
 
     public function fanArtsUpdate(Request $request, $id)
