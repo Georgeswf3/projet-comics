@@ -44,7 +44,7 @@ class Author
     private $creation_image;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", inversedBy="authors")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="authors")
      */
     private $article_id;
 
@@ -54,7 +54,7 @@ class Author
     private $fan_art_id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Job", mappedBy="author_id")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Job", inversedBy="author_id")
      */
     private $jobs;
 
