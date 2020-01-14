@@ -4,29 +4,14 @@
 
     {{ form_start(userForm) }}
 
-    <div class="form-group mt-5 ml-3 mr-3">
-        <div class="row">
-            <div class="col-6">
-                {{ form_row(userForm.first_name, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-6">
-                {{ form_row(userForm.last_name, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-6">
-                {{ form_row(userForm.pseudo, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-6">
-                {{ form_row(userForm.email, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-6">
-                {{ form_row(userForm.password, {'attr' : {class : "form-control"}}) }}
-            </div>
-            <div class="col-6 mt-4">
-                {{ form_row(userForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
-            </div>
 
-        </div>
-    </div>
+        {{ form_row(userForm.first_name, {'attr': {class : "form-control"}}) }}
+        {{ form_row(userForm.last_name, {'attr': {class : "form-control"}}) }}
+        {{ form_row(userForm.pseudo, {'attr': {class : "form-control"}}) }}
+        {{ form_row(userForm.email, {'attr': {class : "form-control"}}) }}
+        {{ form_row(userForm.password, {'attr' : {class : "form-control"}}) }}
+        {{ form_row(userForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
+
 
     {{ form_end(userForm) }}
 
