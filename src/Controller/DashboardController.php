@@ -16,6 +16,7 @@ use App\Form\FanArtType;
 use App\Form\JobType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\AuthorRepository;
 use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,12 +29,14 @@ class DashboardController extends AbstractController
     private $userRepository;
     private $articleRepository;
     private $fanArtRepository;
+    private $authorRepository;
 
-    public function __construct(UserRepository $userRepository, ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+    public function __construct(UserRepository $userRepository, ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, AuthorRepository $authorRepository)
     {
         $this->userRepository = $userRepository;
         $this->articleRepository = $articleRepository;
         $this->fanArtRepository = $fanArtRepository;
+        $this->authorRepository = $authorRepository;
     }
 
 
@@ -59,7 +62,9 @@ class DashboardController extends AbstractController
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $author = $this->authorRepository->findOneBy([]);
             $article->setUserId($user);
+            $article->addAuthor();
 
 
             $entityManager = $this->getDoctrine()->getManager();

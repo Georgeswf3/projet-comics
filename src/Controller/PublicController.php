@@ -31,7 +31,7 @@ class PublicController extends AbstractController
     private $authorRepo;
 
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository, AuthorRepository $authorRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
@@ -57,8 +57,8 @@ class PublicController extends AbstractController
 
     public function author($id)
     {
-        $author = $this->authorRepo->findBy($id);
-        return $this -> render('pages/author.html.twig', ["author"=>$author]);
+
+        return $this -> render('pages/author.html.twig');
 
     }
 

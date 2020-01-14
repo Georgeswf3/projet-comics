@@ -9,6 +9,8 @@
 
     <div class="col mt-3">
 
+        <button><a href="{{ path('author', {id : author_id}) }}">Voir l'<auteur></auteur></a></button>
+
     {% if app.user %}
         <button class="btn btn-link"><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
     {% endif %}
