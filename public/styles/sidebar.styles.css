@@ -1,6 +1,5 @@
 .sideBar{
-    width:200px;
-    height:600px;
+    width:100%;
+    height:800px;
     background-color: #114674;
-    display:inline-block;
 }
