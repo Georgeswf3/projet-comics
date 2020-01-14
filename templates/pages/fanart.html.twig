@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des fan arts</h1>
+
     <div class="container mb-5 mt-5">
 
        <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
@@ -15,5 +15,51 @@
     {% if app.user %}
     <button><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
     {% endif %}
+
+    <div class="container mb-5 mt-5">
+
+        <h3>Ajouter un commentaire</h3>
+
+        {{ form_start(commentForm) }}
+        <div class="col-12">
+            {{ form_row(commentForm.comment_fan_art, {'attr': {class : "form-control"}}) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(commentForm.isConfirmed, {'attr': {class : "form-control"}}) }}
+        </div>
+
+        <div class="col-6">
+            {{ form_row(commentForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+        </div>
+        {{ form_end(commentForm) }}
+
+    </div>
+
+
+    <div class="container mb-5 mt-5">
+
+        <h3>Commentaires : </h3>
+
+        {% for comment in comments %}
+
+            <div>
+                {{ comment.commentFanArt }}
+            </div>
+
+            <div>
+                <p>Publié par {{ comment.userId.pseudo }}</p>
+            </div>
+        {% endfor %}
+
+
+
+
+    </div>
+
+
+
+
+
 
 {% endblock %}
