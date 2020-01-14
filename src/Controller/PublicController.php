@@ -44,11 +44,11 @@ class PublicController extends AbstractController
 
 
 
-    public function articles()
+    public function articles(Request $request)
     {
-        $articles = $this->articleRepo->findAll();
-        return $this->render('pages/articles.html.twig', ["articles" => $articles]);
-        $articles = $this->articleRepo->findPaginatedArticles($from);
+        $from = $request->query->get("from");
+        $articles = $this->articleRepo->findPaginatedArticle($from);
+        return $this->render('pages/articles.html.twig', ["articles" => $articles, "from" => $from]);
 
     }
 
