@@ -8,28 +8,27 @@
 
     <div class="container align-items-center mt-5 mb-5">
         <div class="row justify-content-center">
-            <div class="col-7 contenu">
+            <div class="col-lg-7 col-sm-9 contenu">
                 <h1>Créer un fan-art : </h1>
 
                 {{ form_start(FanArtForm) }}
-                <div class="container mt-5">
+                <div class="container mt-4">
                     {{ form_row(FanArtForm.fan_art_title, {'attr': {class : "form-control"}}) }}    
                     {{ form_row(FanArtForm.fan_art_sketch, {'attr': {class : "form-control"}}) }}
                     {{ form_row(FanArtForm.fan_art_hook, {'attr': {class : "form-control"}}) }}
-                    {{ form_row(FanArtForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+                    {{ form_row(FanArtForm.editor_id, {'attr': {class : "form-control", label : "Editeur"}}) }}
+                    <div class="row justify-content-around mt-3 mb-3">
+                        {{ form_row(FanArtForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+                        <div class="row">
+                            {{ form_row(FanArtForm.isConfirmed, {'attr': {class : "check-form"}}) }}
+                        </div>
+                    </div>
                 </div>
-
                 {{ form_end(FanArtForm) }}
             </div>
         </div>
     </div>
 
-
-    {{ form_end(FanArtForm) }}
-
-    <button><a href="{{ path('dashboard_editors_create') }}">Créer un editor</a></button>
-
-
-
+    <button><a href="{{ path('dashboard_editors_create') }}">Créer un éditeur</a></button>
 
 {% endblock %}
