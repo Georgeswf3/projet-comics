@@ -16,7 +16,12 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('article_title')
-            ->add('authors', EntityType::class, ['class' => Author::class, 'choice_label' => 'author_name'])
+            ->add('authors', EntityType::class,
+                ['class' => Author::class,
+                    'choice_label' => 'author_name',
+                    'multiple'=>true,
+                    'expanded'=>true,
+                ])
             ->add('article_text')
             ->add('article_date')
             ->add('isConfirmed')

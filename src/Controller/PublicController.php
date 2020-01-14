@@ -57,8 +57,9 @@ class PublicController extends AbstractController
 
     public function author($id)
     {
+        $author = $this ->authorRepo->findOneBy(["id" => $id]);
 
-        return $this -> render('pages/author.html.twig');
+        return $this -> render('pages/author.html.twig', ['author'=>$author]);
 
     }
 

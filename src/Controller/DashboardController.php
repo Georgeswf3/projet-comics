@@ -62,9 +62,9 @@ class DashboardController extends AbstractController
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-            $author = $this->authorRepository->findOneBy([]);
+            $authors = $article->getAuthors();
             $article->setUserId($user);
-            $article->addAuthor();
+
 
 
             $entityManager = $this->getDoctrine()->getManager();

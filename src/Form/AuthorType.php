@@ -20,7 +20,11 @@ class AuthorType extends AbstractType
             ->add('facebook_page')
             ->add('author_image')
             ->add('creation_image')
-            ->add('jobs', EntityType::class, ['class' => Job::class, 'choice_label'=>'name', 'multiple'=>true])
+            ->add('jobs', EntityType::class, ['class' => Job::class,
+                'choice_label'=>'name',
+                'multiple'=>true,
+                'expanded'=>true
+            ])
             ->add('ajouter', SubmitType::class)
         ;
     }
