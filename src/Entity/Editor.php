@@ -24,7 +24,7 @@ class Editor
     private $editor_brand;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FanArt", mappedBy="editor_id")
+     * @ORM\ManyToMany(targetEntity="App\Entity\FanArt", inversedBy="editor_id")
      */
     private $fanArts;
 

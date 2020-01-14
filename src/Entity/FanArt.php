@@ -55,7 +55,7 @@ class FanArt
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Editor", inversedBy="fanArts")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Editor", mappedBy="fanArts")
      */
     private $editor_id;
 
