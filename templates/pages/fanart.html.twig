@@ -11,7 +11,9 @@
      <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
 
     </div>
-    <button><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
 
+    {% if app.user %}
+    <button><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
+    {% endif %}
 
 {% endblock %}
