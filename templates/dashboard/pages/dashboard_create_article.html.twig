@@ -11,8 +11,12 @@
                 {{ form_row(articleForm.article_title, {'attr': {class : "form-control"}}) }}
             </div>
             <div class="col-12 mt-5">
+                {{ form_row(articleForm.authors, {'attr': {class : "form-control"}}) }}
+            </div>
+            <div class="col-12 mt-5">
                 {{ form_row(articleForm.article_text, {'attr': {class : "form-control"}}) }}
             </div>
+
             <div class="col-12 mt-5">
                 {{ form_row(articleForm.isConfirmed, {'attr': {class : "form-control"}}) }}
             </div>
@@ -26,6 +30,6 @@
 
     {{ form_end(articleForm) }}
 
-
+<button><a href="{{ path('dashboard_authors_create') }}">Créer un auteur</a></button>
 
 {% endblock %}
