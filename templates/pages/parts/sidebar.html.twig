@@ -8,7 +8,7 @@
 
     {% if app.request.get('_route') == 'fanArts' %}
 
-    <a href="{{ path('dashboard_fanArts_create', { id: app.user.id })}}">Créer un fan-art</a>
+        <a href="{{ path('dashboard_fanArts_create', { id: app.user.id })}}">Créer un fan-art</a>
 
     {% else %}
 
