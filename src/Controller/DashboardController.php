@@ -61,11 +61,9 @@ class DashboardController extends AbstractController
             $actualTitle = $article->getArticleTitle();
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
+
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-            $authors = $article->getAuthors();
             $article->setUserId($user);
-
-
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
@@ -73,7 +71,7 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute("home");
         }
 
-        return $this->render("dashboard/pages/dashboard_create_article.html.twig", ["articleForm" => $form->createView()]);
+        return $this->render("dashboard/pages/dashboard_create_article.html.twig", ["articleForm" => $form->createView(), "article" => $article]);
     }
 
     public function articleUpdate(Request $request,Security $security, $id)
@@ -220,9 +218,9 @@ class DashboardController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()){
             $author = $form->getData();
-            $entityManager = $this -> getDoctrine()-> getManager();
-            $entityManager ->persist($author);
-            $entityManager ->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($author);
+            $entityManager->flush();
             return $this->redirectToRoute('dashboard_articles_create');
         }
         return $this->render('dashboard/pages/dashboard_create_authors.html.twig', ["authorForm" => $form->createView()]);
