@@ -25,7 +25,7 @@ class Job
 
     /**
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="jobs")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", mappedBy="jobs")
      */
     private $author_id;
 
