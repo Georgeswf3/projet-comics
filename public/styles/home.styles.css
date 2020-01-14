@@ -9,19 +9,10 @@ header{
     display:flex;
     flex-direction:row;
 }
-  
-.element-left{
-    background-image:url(/medias/logomix2.jpg);
-    background-color:red;
-    background-repeat:no-repeat;
-    background-size:cover;
-    min-width:23%;
-    height:250px;
-}
 
 .block-middle{
     height:250px;
-    width:60%;
+    width:100%;
     display:flex;
     flex-direction:column;
 }
@@ -29,13 +20,15 @@ header{
 .element-middle-top{
     width:100%;
     height:200px;
-    background: radial-gradient(#114674, black );
+    background: #114674;
     background-repeat:no-repeat;
 }
   
 .background-middle-top{
-    width:280px;
-    height:200px;
+    min-width:280px;
+    max-width: 350px;
+    min-height:200px;
+    max-height: 320px;
     background-image:url(/medias/comics_ffa_logo_v2.png);
     background-repeat:no-repeat;
     background-size:cover;
@@ -64,9 +57,10 @@ header{
 
 /* Formulaire */
 .element-right{
-    min-width:140px;
-    max-width:180px;
-    height:270px;
+    min-width:180px;
+    max-width:280px;
+    min-height: 200px;
+    max-height:270px;
     background-image:url(/medias/wolvieminiblue.gif);
     background-position-y:-20px;
     background-repeat:no-repeat;
@@ -96,6 +90,7 @@ header{
 }
 
 .submit{
+    width: 100%;
     font-family: 'Permanent Marker', cursive;
     margin-top:210px;
     height:30px;
@@ -162,14 +157,14 @@ header{
     margin-bottom:50px;
 }
 
-.logo-left{
-    width:160px;
-    height:120px;
-    background-image:url(/medias/Dark_Horse_Comics_Logo.png);
-    background-repeat:no-repeat;
-    background-size:80px;
-    background-position-x:15px;
-}
+/*.logo-left{*/
+/*    width:160px;*/
+/*    height:120px;*/
+/*    background-image:url(/medias/Dark_Horse_Comics_Logo.png);*/
+/*    background-repeat:no-repeat;*/
+/*    background-size:80px;*/
+/*    background-position-x:15px;*/
+/*}*/
 
 .element-text{
     width:100%;
@@ -192,6 +187,7 @@ header{
     color: #131B2C;
     font-family: 'Lilita One', cursive;
     text-decoration:none;
+
 }
 
 .element-text a:hover{
@@ -202,14 +198,14 @@ header{
     transition-duration:0.5s;
 }
 
-.logo-right{
-    width:160px;
-    height:120px;
-    background-image:url(/medias/logo_comics.png);
-    background-repeat:no-repeat;
-    background-size:100px;
-    background-position-x:15px;
-}
+/*.logo-right{*/
+/*    width:160px;*/
+/*    height:120px;*/
+/*    background-image:url(/medias/logo_comics.png);*/
+/*    background-repeat:no-repeat;*/
+/*    background-size:100px;*/
+/*    background-position-x:15px;*/
+/*}*/
 
 
 
