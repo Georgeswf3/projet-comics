@@ -9,6 +9,7 @@ use App\Entity\Editor;
 use App\Entity\FanArt;
 use App\Form\ArticleType;
 use App\Form\EditorType;
+use App\Form\FanArtAdminType;
 use App\Form\FanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
@@ -24,6 +25,7 @@ class DashboardController extends AbstractController
     private $userRepository;
     private $articleRepository;
     private $fanArtRepository;
+
 
     public function __construct(UserRepository $userRepository, ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
     {
@@ -89,7 +91,14 @@ class DashboardController extends AbstractController
     {
         $slugger = new AsciiSlugger();
         $fanart = new FanArt();
-        $form = $this->createForm(FanArtType::class, $fanart);
+        $role = $this->userRepository->findOneBy(['roles' => $security->getUser()->getRoles()]);
+
+        if($role['roles'] == ['ROLE_ADMIN']) {
+            $form = $this->createForm(FanArtAdminType::class, $fanart);
+        } else {
+            $form = $this->createForm(FanArtType::class, $fanart);
+        }
+
         $form->handleRequest($request);
         if ($form->isSubmitted()){
             $fanart = $form->getData();
