@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des fan arts</h1>
+
     <div class="container mb-5 mt-5">
 
        <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
@@ -43,9 +43,9 @@
                 {{ comment.commentFanArt }}
             </div>
 
-       {#     <div>
-                {{ comment.user }}
-            </div>#}
+            <div>
+                <p>Publié par {{ comment.userId.pseudo }}</p>
+            </div>
         {% endfor %}
 
 

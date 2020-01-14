@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Comment;
+use App\Entity\FanArt;
 use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentArticleType;
@@ -78,7 +79,7 @@ class PublicController extends AbstractController
     public function fanArt(Request $request, Security $security, $slug)
     {
         $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
-        $comments = $this->commentRepo->findAll();
+        $comments = $this->commentRepo->findBy(["fan_art" => $fanArt]);
 
         $comment = new Comment();
         $form = $this->createForm(CommentFanArtType::class, $comment);
