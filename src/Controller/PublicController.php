@@ -90,6 +90,7 @@ class PublicController extends AbstractController
             $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
             $comment->setUserId($user);
             $comment->setFanArtId($fanArt);
+            $comment->getId();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
