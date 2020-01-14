@@ -7,11 +7,32 @@
                 <div class="background-middle-top"></div>
             </div>
             <div class="container">
-                <button type="button" class="btn btn-primary btn-lg">Large button</button>
-                <button type="button" class="btn btn-secondary btn-lg">Large button</button>
-                <button type="button" class="btn btn-primary btn-lg">Large button</button>
-                <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+                <div class="row">
+                    <button type="pagebtn" class="btn btn-sm col"><a href="/">Accueil</a></button>
+                    <button type="pagebtn" class="btn btn-sm col"><a href="{{ path ("articles", { from : 1 }) }}">Artistes</a></button>
+                    <button type="pagebtn" class="btn btn-sm col"><a href="{{ path ("fanArts", { from : 1 }) }}">Fan Arts</a></button>
+                    {% if not app.user %}
+                    <button type="pagebtn" class="btn btn-sm col"><a href="{{ path('create_users') }}">S'inscrire</a></button>
+                    {% else %}
+                    <button type="pagebtn" class="btn btn-sm col"><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
+                    {% endif %}
+                    {% if app.user %}
+                    <button type="pagebtn" class="btn btn-sm col"><a href="{{ path('logout') }}">Se déconnecter</a></button>
+                    {% else %}
+                        <button type="pagebtn" class="btn btn-sm col"><a href="{{ path('login') }}">Se connecter</a> </button>
+                    {% endif %}
+                </div>
+
             </div>
+{#            div class="element-right">#}
+
+{#            {% if app.user %}#}
+{#                <button class="submit"><a href="{{ path('logout') }}">Se déconnecter</a> </button>#}
+{#            {% else %}#}
+{#                <button class="submit"><a href="{{ path('login') }}">Se connecter</a> </button>#}
+{#            {% endif %}#}
+
+{#        </div>#}
 {#            <div class="element-middle-bottom">#}
 {#                <button class="pagebtn"><a href="/">Accueil</a></button>#}
 {#                <button class="pagebtn"><a href="{{ path ("articles", { from : 1 })}}">Artistes</a></button>#}
@@ -25,15 +46,7 @@
         </div>
 
         {# Formulaire #}
-        <div class="element-right">
-
-            {% if app.user %}
-                <button class="submit"><a href="{{ path('logout') }}">Se déconnecter</a> </button>
-            {% else %}
-                <button class="submit"><a href="{{ path('login') }}">Se connecter</a> </button>
-            {% endif %}
-
-        </div>
+        <
     </header>
 
 {% endblock %}

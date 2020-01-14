@@ -11,19 +11,19 @@ header{
     height:250px;
     display:flex;
     flex-direction:row;
+
 }
 
 .block-middle{
     height:250px;
     width:100%;
-    display:flex;
-    flex-direction:column;
+
 }
 
 .element-middle-top{
     width:100%;
     height:200px;
-    background: #114674;
+    background-color: #FFFFFF;
     background-repeat:no-repeat;
 }
   
@@ -58,9 +58,6 @@ header{
     text-decoration:none;
     color:white;
 }
-/*.pagebtn{*/
-/*    margin-left: 33px;*/
-/*}*/
 
 /* Formulaire */
 .element-right{
@@ -122,8 +119,8 @@ header{
     height:fit-content;
     background-color:rgba(71, 107, 134, 0.411);
     margin:50px auto;
-    color: rgba(253, 253, 0, 0.411);
-    text-align:center;
+    color: #FFFF00;
+    text-align:justify;
     transition-duration: 0.5s;
     font-size:25px;
     border-radius:50px;
@@ -131,7 +128,7 @@ header{
 }
 
 .contenuPresentation p:nth-child(2){
-    color:rgba(19, 27, 44, 0.411);
+    color:#FFFF00;
     transition-duration: 0.5s;
     font-size:16px;
     padding-left:5px;
@@ -158,18 +155,9 @@ header{
 .footer{
     width:100%;
     height:120px;
-    background-color:#114674;
+    background-color:#FFFFFF;
     display:flex;
 }
-
-/*.logo-left{*/
-/*    width:160px;*/
-/*    height:120px;*/
-/*    background-image:url(/medias/Dark_Horse_Comics_Logo.png);*/
-/*    background-repeat:no-repeat;*/
-/*    background-size:80px;*/
-/*    background-position-x:15px;*/
-/*}*/
 
 .element-text{
     width:100%;
@@ -206,12 +194,4 @@ p{
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-/*.logo-right{*/
-/*    width:160px;*/
-/*    height:120px;*/
-/*    background-image:url(/medias/logo_comics.png);*/
-/*    background-repeat:no-repeat;*/
-/*    background-size:100px;*/
-/*    background-position-x:15px;*/
-/*}*/
 
