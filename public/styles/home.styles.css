@@ -193,5 +193,13 @@ header{
 p{
     font-family: 'Roboto Condensed', sans-serif;
 }
-
+/*** user profile ***/
+.profil{
+    text-align: center;
+    color: #5eb5e0;
+}
+li{
+    list-style-type: none;
+    text-align: center;
+}
 
