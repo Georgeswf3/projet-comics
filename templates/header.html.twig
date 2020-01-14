@@ -1,7 +1,3 @@
-{% block style %}
-    <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
-{% endblock %}
-
 {# Header + bouton #}
 {% block body %}
     <header>
@@ -11,15 +7,14 @@
                 <div class="background-middle-top"></div>
             </div>
             <div class="element-middle-bottom">
-                <button><a href="/">Accueil</a></button>
-                <button><a href="{{ path ("articles", { from : 1 })}}">Artistes</a></button>
-                <button><a href="{{ path ("fanArts", { from : 1 }) }}">Fan Arts</a></button>
+                <button class="pagebtn"><a href="/">Accueil</a></button>
+                <button class="pagebtn"><a href="{{ path ("articles", { from : 1 })}}">Artistes</a></button>
+                <button class="pagebtn"><a href="{{ path ("fanArts", { from : 1 }) }}">Fan Arts</a></button>
                 {% if not app.user %}
-                    <button><a href="{{ path('create_users') }}">S'inscrire</a> </button>
+                    <button class="pagebtn"><a href="{{ path('create_users') }}">S'inscrire</a> </button>
                     {% else %}
-                    <button><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
+                    <button class="pagebtn"><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
                 {% endif %}
-
             </div>
         </div>
 

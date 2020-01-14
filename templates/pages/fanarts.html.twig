@@ -8,19 +8,21 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
+            <div class="col-3 mt-4" style="background: #101fff; border-right: 3px solid">
                 {% include "pages/parts/sidebar.html.twig" %}
             </div>
-            <div class="col-10">
-                <div class="row justify-content-center col-auto mt-4">
+            <div class="col-9">
+                <div class="row justify-content-center mt-4 mb-4">
                     {% for fanArt in fanArts %}
-                        <div class="elements mt-3 ml-4">
-                            <p>{{ fanArt.fanArtTitle }}</p>
-                            <img src="{{ fanArt.fanArtSketch }}" alt="">
-                            <div class="text">
-                                <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+                        <div class="col-md-4 p-2">
+                            <div class="elements">
+                                <p>{{ fanArt.fanArtTitle }}</p>
+                                <img src="{{ fanArt.fanArtSketch }}" alt="">
+                                <div class="text">
+                                    <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
+                                </div>
+                                <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
                             </div>
-                            <a href="{{ path("fanArt", {slug : fanArt.slug}) }}" class="btn btn-secondary">Voir</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -51,6 +53,6 @@
             </div>
         </div>
     </div>
-            
+
 
 {% endblock %}
