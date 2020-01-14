@@ -203,9 +203,11 @@ li{
     list-style-type: none;
     text-align: center;
 }
-/*** page fanArt ***/
+/*** page fanArt + article ***/
 .fanarttitle,
-.fanarthook{
+.fanarthook,
+.articletitle,
+.articletext{
     color: #5eb5e0;
     text-align: center;
 }
@@ -215,3 +217,4 @@ li{
 .formcomment{
     color: #5eb5e0;
 }
+
