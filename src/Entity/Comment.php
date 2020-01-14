@@ -41,7 +41,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity="App\Entity\FanArt", inversedBy="comments")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $fan_art;
+        private $fan_art;
 
     /**
      * @ORM\Column(type="boolean")
@@ -96,7 +96,7 @@ class Comment
 
     public function setArticleId(?Article $article): self
     {
-        $this->article_id = $article;
+        $this->article = $article;
 
         return $this;
     }
