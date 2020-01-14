@@ -19,24 +19,33 @@ class Job
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
-    private $job_writer;
+    private $name;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $job_penciler;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $job_inker;
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="jobs")
      */
     private $author_id;
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     * @return Job
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
 
     public function __construct()
     {
@@ -46,42 +55,6 @@ class Job
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getJobWriter(): ?bool
-    {
-        return $this->job_writer;
-    }
-
-    public function setJobWriter(bool $job_writer): self
-    {
-        $this->job_writer = $job_writer;
-
-        return $this;
-    }
-
-    public function getJobPenciler(): ?bool
-    {
-        return $this->job_penciler;
-    }
-
-    public function setJobPenciler(bool $job_penciler): self
-    {
-        $this->job_penciler = $job_penciler;
-
-        return $this;
-    }
-
-    public function getJobInker(): ?bool
-    {
-        return $this->job_inker;
-    }
-
-    public function setJobInker(bool $job_inker): self
-    {
-        $this->job_inker = $job_inker;
-
-        return $this;
     }
 
     /**

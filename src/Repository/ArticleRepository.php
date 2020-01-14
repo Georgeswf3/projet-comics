@@ -64,4 +64,7 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findPaginatedArticles($from)
+    {
+    }
 }
