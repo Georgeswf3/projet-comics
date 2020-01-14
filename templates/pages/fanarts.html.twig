@@ -1,11 +1,10 @@
 {% extends "base.html.twig" %}
 
+{% block styleFanArts %}
+    <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
+{% endblock %}
+
 {% block body %}
-
-    {% block styleFanArts %}
-        <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
-    {% endblock %}
-
 
     <div class="container-fluid">
         <div class="row">
