@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
     {% endblock %}
 
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-2">
@@ -13,7 +14,7 @@
             </div>
 
             <div class="col-10">
-                <div class="row justify-content-center col-auto mt-5">
+                <div class="row justify-content-center col-auto mt-4">
                     {% for fanArt in fanArts %}
                         <div class="elements mt-3 ml-4">
                             <p>{{ fanArt.fanArtTitle }}</p>
@@ -26,14 +27,14 @@
                     {% endfor %}
                 </div>
             
-                <div class="container mt-3">
+                <div class="container mt-3 mb-5">
                     <div class="row">
                         <div class="col-6">
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col-4">
                                         {% if from > 1 %}
-                                            <a href="{{path('fanArts', {from : from - 1}) }}"><h3>Précédent</h3></a>
+                                            <a href="{{path('fanArts', {from : from - 1}) }}" class="btn-lg btn-dark">Précédent</a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -41,9 +42,9 @@
                         </div>
                         <div class="col-6">
                             <div class="container">
-                                <div class="row row justify-content-center">
+                                <div class="row justify-content-center">
                                     <div class="col-4">
-                                        <a href="{{ path('fanArts', {from : from + 1}) }}"><h3>Suivant</h3></a>
+                                        <a href="{{ path('fanArts', {from : from + 1}) }}" class="btn-lg btn-dark buttons">Suivant</a>
                                     </div>
                                 </div>
                             </div>
