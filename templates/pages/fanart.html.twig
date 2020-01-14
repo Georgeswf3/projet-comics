@@ -3,22 +3,24 @@
 {% block body %}
 
     <div class="container mb-5 mt-5">
-
+    <div class="fanarttitle">
        <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
-
-
-     <img src="{{ fanArt.fanArtSketch }}" alt="Sketch Fan-Art">
-     <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
-
+    </div>
+    <div class="fanartimg">
+        <img src="{{ fanArt.fanArtSketch }}" alt="Sketch Fan-Art">
+    </div>
+        <div class="fanarthook">
+        <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
+        </div>
     </div>
 
-    <div class="col mt-3">
-    {% if app.user %}
-    <button class="btn btn-link"><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
-    {% endif %}
+    <div class="col mt-3" style="text-align: center">
+        {% if app.user %}
+        <button class="btn btn-light btn-link"><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
+        {% endif %}
     </div>
 
-    <div class="container mb-5 mt-5">
+    <div class="container formcomment mb-5 mt-5">
 
         <h3>Ajouter un commentaire : </h3>
 
@@ -41,7 +43,7 @@
     </div>
 
 
-    <div class="container mb-5 mt-5">
+    <div class="container formcomment mb-5 mt-5">
 
         <h3>Commentaires : </h3>
 
