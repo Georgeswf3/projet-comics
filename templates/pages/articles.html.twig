@@ -1,8 +1,17 @@
 {% extends "base.html.twig" %}
 
-{% block styleFanArts %}
-    <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
-{% endblock %}
+{% block body %}
+
+    {#{% include "pages/parts/sidebar.html.twig" %}
+
+    {% for article in articles %}
+        <p>{{ article.articleTitle }}</p>
+        <p>{{ article.articleText }}</p>
+        #}{# <p>{{ article.articleDate }}</p> #}{#
+    {% endfor %}#}
+    {% block styleFanArts %}
+        <link rel="stylesheet" href="{{ asset ("styles/fanarts.styles.css")}}">
+    {% endblock %}
 
 {% block body %}
 
