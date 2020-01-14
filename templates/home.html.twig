@@ -7,6 +7,7 @@
     {% endblock %}
 
     {% if app.user %}
+        <div class="profil">
         <h4 class="centrer">{{ app.user.pseudo }}</h4>
         <div class="container">
             <div class="row">
@@ -23,6 +24,7 @@
             {#{% if article.userId == app.user %}
                 <p><a href="{{ path('article', {'slug': app.user.id}) }}">{{ article.articleTitle }}</a></p>
             {% endif %}#}
+        </div>
         </div>
     {% endif %}
 
