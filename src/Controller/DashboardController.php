@@ -7,13 +7,16 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Editor;
 use App\Entity\FanArt;
+use App\Entity\Job;
 use App\Form\ArticleType;
 use App\Form\EditorType;
 use App\Form\FanArtType;
+use App\Form\JobType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -35,9 +38,12 @@ class DashboardController extends AbstractController
 
     public function homeAction(Request $request, Security $security, Article $id)
     {
-        $article = $this->userRepository->findBy(['id' => $id->getUserId()]);
+        $articles = $this->articleRepository->findBy(['id' => $id->getUserId()]);
         $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-        return $this->render('home.html.twig', ["user" => $user, "article" => $article]);
+        //$articles = $this->articleRepository->findByUserId($id);
+
+
+        return $this->render('home.html.twig', ["user" => $user, "article" => $articles]);
     }
 
     public function articleCreate(Request $request, Security $security)
@@ -171,7 +177,7 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($editor);
             $entityManager->flush();
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("dashboard_fanArts_create");
         }
         return $this->render("dashboard/pages/dashboard_create_editor.html.twig", ["editorForm" => $form->createView()]);
 
@@ -181,8 +187,19 @@ class DashboardController extends AbstractController
     {
     }
 
-    public function jobsCreate()
+    public function jobsCreate(Request $request)
     {
+        $job = new Job();
+        $form = $this->createForm(JobType::class, $job);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $job = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($job);
+            $entityManager->flush();
+            return $this->redirectToRoute("home");
+        }
+        return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
     }
 
     public function jobsUpdate()
