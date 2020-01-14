@@ -4,14 +4,14 @@
 
     {{ form_start(userForm) }}
 
-
-        {{ form_row(userForm.first_name, {'attr': {class : "form-control"}}) }}
-        {{ form_row(userForm.last_name, {'attr': {class : "form-control"}}) }}
-        {{ form_row(userForm.pseudo, {'attr': {class : "form-control"}}) }}
-        {{ form_row(userForm.email, {'attr': {class : "form-control"}}) }}
-        {{ form_row(userForm.password, {'attr' : {class : "form-control"}}) }}
-        {{ form_row(userForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
-
+        <div class="">
+            {{ form_row(userForm.first_name, {'attr': {class : "form-control"}}) }}
+            {{ form_row(userForm.last_name, {'attr': {class : "form-control"}}) }}
+            {{ form_row(userForm.pseudo, {'attr': {class : "form-control"}}) }}
+            {{ form_row(userForm.email, {'attr': {class : "form-control"}}) }}
+            {{ form_row(userForm.password, {'attr' : {class : "form-control"}}) }}
+            {{ form_row(userForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
+        <div>
 
     {{ form_end(userForm) }}
 
