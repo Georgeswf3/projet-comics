@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Author;
+use App\Entity\Job;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,8 +20,8 @@ class AuthorType extends AbstractType
             ->add('facebook_page')
             ->add('author_image')
             ->add('creation_image')
-            ->add('article_id')
-            ->add('jobs')
+            ->add('jobs', EntityType::class, ['class' => Job::class, 'choice_label'=>'name', 'multiple'=>true])
+            ->add('ajouter', SubmitType::class)
         ;
     }
 

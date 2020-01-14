@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Author;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,9 +16,9 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('article_title')
+            ->add('authors', EntityType::class, ['class' => Author::class, 'choice_label' => 'author_name'])
             ->add('article_text')
             ->add('article_date')
-            ->add()
             ->add('isConfirmed')
             ->add('ajouter', SubmitType::class)
         ;

@@ -12,6 +12,7 @@ use App\Form\CommentArticleType;
 use App\Form\CommentFanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\AuthorRepository;
 use App\Repository\CommentRepository;
 use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
@@ -27,14 +28,16 @@ class PublicController extends AbstractController
     private $fanArtRepo;
     private $commentRepo;
     private $userRepo;
+    private $authorRepo;
 
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository, AuthorRepository $authorRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
         $this->commentRepo = $commentRepository;
         $this->userRepo = $userRepository;
+        $this->authorRepo = $authorRepository;
     }
 
     public function index()
@@ -49,6 +52,13 @@ class PublicController extends AbstractController
         $articles = $this->articleRepo->findAll();
         return $this->render('pages/articles.html.twig', ["articles" => $articles]);
         $articles = $this->articleRepo->findPaginatedArticles($from);
+
+    }
+
+    public function author($id)
+    {
+        $author = $this->authorRepo->findBy($id);
+        return $this -> render('pages/author.html.twig', ["author"=>$author]);
 
     }
 

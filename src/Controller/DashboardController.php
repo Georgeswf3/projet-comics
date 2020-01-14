@@ -8,7 +8,9 @@ use App\Entity\Article;
 use App\Entity\Editor;
 use App\Entity\FanArt;
 use App\Entity\Job;
+use App\Entity\Author;
 use App\Form\ArticleType;
+use App\Form\AuthorType;
 use App\Form\EditorType;
 use App\Form\FanArtType;
 use App\Form\JobType;
@@ -16,7 +18,6 @@ use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -197,17 +198,29 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("dashboard_authors_create");
         }
         return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
     }
 
-    public function jobsUpdate()
+    public function jobsUpdate(Request $request)
     {
+
     }
 
-    public function authorsCreate()
+    public function authorsCreate(Request $request)
     {
+        $author = new Author();
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $author = $form->getData();
+            $entityManager = $this -> getDoctrine()-> getManager();
+            $entityManager ->persist($author);
+            $entityManager ->flush();
+            return $this->redirectToRoute('dashboard_articles_create');
+        }
+        return $this->render('dashboard/pages/dashboard_create_authors.html.twig', ["authorForm" => $form->createView()]);
     }
 
     public function authorsUpdate()
