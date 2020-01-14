@@ -8,7 +8,9 @@
     </div>
 
     <div class="col mt-3">
-
+            {%  for author in article.authors %}
+                <a href="{{ path('author', {id : author.id}) }}">  <p>{{ author.authorName }}</p></a>
+            {% endfor %}
   {#      <button><a href="{{ path('author', {id : }) }}">Voir l'auteur</a></button>#}
 
     {% if app.user %}
