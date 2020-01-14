@@ -5,27 +5,36 @@ namespace App\Controller;
 
 
 use App\Entity\Comment;
+use App\Entity\FanArt;
 use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentArticleType;
+use App\Form\CommentFanArtType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Repository\FanArtRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 
 class PublicController extends AbstractController
 {
     private $articleRepo;
     private $fanArtRepo;
+    private $commentRepo;
+    private $userRepo;
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
-
+        $this->commentRepo = $commentRepository;
+        $this->userRepo = $userRepository;
     }
 
     public function index()
@@ -67,10 +76,30 @@ class PublicController extends AbstractController
         return $this->render('pages/fanarts.html.twig', ["fanArts" => $fanArts, "from" => $from]);
     }
 
-    public function fanArt($slug)
+    public function fanArt(Request $request, Security $security, $slug)
     {
         $fanArt = $this->fanArtRepo->findOneBy(["slug" => $slug]);
-        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt]);
+        $comments = $this->commentRepo->findBy(["fan_art" => $fanArt]);
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentFanArtType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()) {
+            $comment = $form->getData();
+            $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $comment->setUserId($user);
+            $comment->setFanArtId($fanArt);
+            $comment->getId();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute('fanArt', ['slug' => $fanArt->getSlug()]);
+        }
+
+        return $this->render('pages/fanart.html.twig', ["fanArt" => $fanArt, "comments" => $comments, 'commentForm' => $form->createView()]);
     }
 
     public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -98,6 +127,7 @@ class PublicController extends AbstractController
         }
         return $this->render('pages/signup.html.twig', ['userForm'=>$form->createView()]);
     }
+
 
 
 }
