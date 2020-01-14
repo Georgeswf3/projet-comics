@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\FanArt;
+use App\Entity\Job;
 use App\Entity\User;
 use App\Entity\Article;
 use Faker\Factory;
@@ -34,6 +35,9 @@ class UserFixtures extends Fixture
         $user3 = new User();
         $user4 = new User();
         $user5 = new User();
+        $job = new Job();
+        $job2 = new Job();
+        $job3 = new Job();
 
         $user->setPseudo("Josam")
             ->setFirstName("Georges")
@@ -73,11 +77,21 @@ class UserFixtures extends Fixture
             ->setPassword($this->passwordEncoder->encodePassword($user5, 'test1234'))
             ->setRoles(['ROLE_USER']);
 
+        $job->setName('Dessinateur');
+        $job2->setName('Scénariste');
+        $job3->setName('Encreur');
+
+
         $manager->persist($user);
         $manager->persist($user2);
         $manager->persist($user3);
         $manager->persist($user4);
         $manager->persist($user5);
+        $manager->persist($job);
+        $manager->persist($job2);
+        $manager->persist($job3);
+
+
 
         //pensez à la fin de la création à loader les fixtures
 

@@ -12,10 +12,8 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('job_writer')
-            ->add('job_penciler')
-            ->add('job_inker')
-            ->add('author_id')
+            ->add('name')
+
         ;
     }
 
