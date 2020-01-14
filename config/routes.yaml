@@ -30,6 +30,10 @@ fanArt:
   path: /fanArt/{slug}
   controller: App\Controller\PublicController::fanArt
 
+author:
+  path: /author/{id}
+  controller: App\Controller\PublicController::author
+
 create_users:
   path: /signup
   controller: App\Controller\PublicController::signup
