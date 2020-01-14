@@ -1,38 +1,29 @@
-{% block style %}
-    <link rel="stylesheet" href="{{asset("styles/home.styles.css")}}">
-{% endblock %}
-
 {# Header + bouton #}
 {% block body %}
     <header>
-        <div class="element-left"></div>
+
         <div class="block-middle">
             <div class="element-middle-top">
                 <div class="background-middle-top"></div>
             </div>
-            <div class="element-middle-bottom">
-                <button><a href="/">Accueil</a></button>
-                <button><a href="{{ path ("articles", { from : 1 })}}">Artistes</a></button>
-                <button><a href="{{ path ("fanArts", { from : 1 }) }}">Fan Arts</a></button>
-                {% if not app.user %}
-                    <button><a href="{{ path('create_users') }}">S'inscrire</a> </button>
+            <div class="container">
+                <div class="row">
+                    <button class="btn btn-sm col"><a href="/">Accueil</a></button>
+                    <button class="btn btn-sm col"><a href="{{ path ("articles", { from : 1 }) }}">Artistes</a></button>
+                    <button class="btn btn-sm col"><a href="{{ path ("fanArts", { from : 1 }) }}">Fan Arts</a></button>
+                    {% if not app.user %}
+                    <button class="btn btn-sm col"><a href="{{ path('create_users') }}">S'inscrire</a></button>
                     {% else %}
-                    <button><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
-                {% endif %}
-                
+                    <button class="btn btn-sm col"><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
+                    {% endif %}
+                    {% if app.user %}
+                    <button class="btn btn-sm col"><a href="{{ path('logout') }}">Se déconnecter</a></button>
+                    {% else %}
+                        <button class="btn btn-sm col"><a href="{{ path('login') }}">Se connecter</a> </button>
+                    {% endif %}
+                </div>
+
             </div>
-        </div>
-
-        {# Formulaire #}
-        <div class="element-right">
-
-            {% if app.user %}
-                <button class="submit"><a href="{{ path('logout') }}">Se déconnecter</a> </button>
-            {% else %}
-                <button class="submit"><a href="{{ path('login') }}">Se connecter</a> </button>
-            {% endif %}
-
-        </div>
     </header>
 
 {% endblock %}
