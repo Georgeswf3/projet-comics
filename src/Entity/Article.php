@@ -47,7 +47,7 @@ class Article
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", mappedBy="article_id")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="article_id", fetch="EAGER")
      */
     private $authors;
 
@@ -147,7 +147,6 @@ class Article
             $this->authors[] = $author;
             $author->addArticleId($this);
         }
-
         return $this;
     }
 
