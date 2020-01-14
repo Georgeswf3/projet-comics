@@ -1,15 +1,15 @@
 .sideBar{
     font-family: 'Lilita One', cursive;
-    width:100%;
+    min-width:200px;
     height:800px;
     background-color: #114674;
     margin-left:-15px;
-    padding:22px;
-    font-size:20px;
+    font-size:18px;
 }
 
 .sideBar a{
     color: #66ace9;
+    margin-left:20px;
 }
 
 .sideBar a:hover{
