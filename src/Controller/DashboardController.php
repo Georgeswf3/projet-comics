@@ -7,12 +7,17 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Editor;
 use App\Entity\FanArt;
+use App\Entity\Job;
+use App\Entity\Author;
 use App\Form\ArticleType;
+use App\Form\AuthorType;
 use App\Form\EditorType;
 use App\Form\FanArtAdminType;
 use App\Form\FanArtType;
+use App\Form\JobType;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\AuthorRepository;
 use App\Repository\FanArtRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,21 +30,25 @@ class DashboardController extends AbstractController
     private $userRepository;
     private $articleRepository;
     private $fanArtRepository;
+    private $authorRepository;
 
-
-    public function __construct(UserRepository $userRepository, ArticleRepository $articleRepository, FanArtRepository $fanArtRepository)
+    public function __construct(UserRepository $userRepository, ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, AuthorRepository $authorRepository)
     {
         $this->userRepository = $userRepository;
         $this->articleRepository = $articleRepository;
         $this->fanArtRepository = $fanArtRepository;
+        $this->authorRepository = $authorRepository;
     }
 
 
     public function homeAction(Request $request, Security $security, Article $id)
     {
-        $article = $this->userRepository->findBy(['id' => $id->getUserId()]);
+        $articles = $this->articleRepository->findBy(['id' => $id->getUserId()]);
         $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-        return $this->render('home.html.twig', ["user" => $user, "article" => $article]);
+        //$articles = $this->articleRepository->findByUserId($id);
+
+
+        return $this->render('home.html.twig', ["user" => $user, "article" => $articles]);
     }
 
     public function articleCreate(Request $request, Security $security)
@@ -54,7 +63,9 @@ class DashboardController extends AbstractController
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
             $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $authors = $article->getAuthors();
             $article->setUserId($user);
+
 
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -180,7 +191,7 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($editor);
             $entityManager->flush();
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("dashboard_fanArts_create");
         }
         return $this->render("dashboard/pages/dashboard_create_editor.html.twig", ["editorForm" => $form->createView()]);
 
@@ -190,16 +201,39 @@ class DashboardController extends AbstractController
     {
     }
 
-    public function jobsCreate()
+    public function jobsCreate(Request $request)
     {
+        $job = new Job();
+        $form = $this->createForm(JobType::class, $job);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $job = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($job);
+            $entityManager->flush();
+            return $this->redirectToRoute("dashboard_authors_create");
+        }
+        return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
     }
 
-    public function jobsUpdate()
+    public function jobsUpdate(Request $request)
     {
+
     }
 
-    public function authorsCreate()
+    public function authorsCreate(Request $request)
     {
+        $author = new Author();
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $author = $form->getData();
+            $entityManager = $this -> getDoctrine()-> getManager();
+            $entityManager ->persist($author);
+            $entityManager ->flush();
+            return $this->redirectToRoute('dashboard_articles_create');
+        }
+        return $this->render('dashboard/pages/dashboard_create_authors.html.twig', ["authorForm" => $form->createView()]);
     }
 
     public function authorsUpdate()
