@@ -21,7 +21,7 @@
                 </div>
             </div>
             {#{% if article.userId == app.user %}
-                <p><a href="{{ path('article', {'id': 'x'}) }}"></a>{{ article.articleTitle }}</p>
+                <p><a href="{{ path('article', {'id': app.user.id}) }}">{{ article.articleTitle }}</a></p>
             {% endif %}#}
         </div>
     {% endif %}

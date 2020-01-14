@@ -35,4 +35,9 @@
 {#    </div>#}
 {#    <button><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>#}
 
+
+
+    {% if app.user %}
+    <button><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
+    {% endif %}
 {% endblock %}
