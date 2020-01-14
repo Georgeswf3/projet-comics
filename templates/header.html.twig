@@ -5,7 +5,7 @@
 {# Header + bouton #}
 {% block body %}
     <header>
-        <div class="element-left"></div>
+
         <div class="block-middle">
             <div class="element-middle-top">
                 <div class="background-middle-top"></div>
@@ -19,7 +19,7 @@
                     {% else %}
                     <button><a href="{{ path('dashboard_user_update', { pseudo: app.user.pseudo}) }}">Compte</a></button>
                 {% endif %}
-                
+
             </div>
         </div>
 
