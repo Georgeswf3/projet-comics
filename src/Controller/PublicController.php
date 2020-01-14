@@ -31,7 +31,7 @@ class PublicController extends AbstractController
     private $authorRepo;
 
 
-    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository, AuthorRepository $authorRepository)
+    public function __construct(ArticleRepository $articleRepository, FanArtRepository $fanArtRepository, CommentRepository $commentRepository, UserRepository $userRepository)
     {
         $this->articleRepo = $articleRepository;
         $this->fanArtRepo = $fanArtRepository;
@@ -62,21 +62,28 @@ class PublicController extends AbstractController
 
     }
 
-    public function article(Request $request, $slug)
+    public function article(Request $request, Security $security, $slug)
     {
         $article = $this->articleRepo->findOneBy(["slug" => $slug]);
+        $comments = $this->commentRepo->findBy(["article" => $article]);
+
         $comment = new Comment();
         $form = $this->createForm(CommentArticleType::class, $comment);
+
         $form->handleRequest($request);
+
         if($form->isSubmitted()){
             $comment = $form->getData();
+            $user = $this->userRepo->findOneBy(['email' => $security->getUser()->getUsername()]);
+            $comment->setUserId($user);
+            $comment->setArticleId($article);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute('article', ['slug' => $article->getSlug()]);
         }
-        return $this-> render('pages/article.html.twig', ["article" => $article, "commentForm" => $form -> createView()]);
+        return $this-> render('pages/article.html.twig', ["article" => $article, "comments" => $comments, "commentForm" => $form -> createView()]);
     }
 
     public function fanArts(Request $request)
