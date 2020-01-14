@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <h1>Liste des fan arts</h1>
     <div class="container mb-5 mt-5">
 
        <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
@@ -11,7 +11,11 @@
      <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
 
     </div>
+
+    {% if app.user %}
     <button><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
+
+    {% endif %}
 
     <div class="container mb-5 mt-5">
 
@@ -33,6 +37,7 @@
 
     </div>
 
+
     <div class="container mb-5 mt-5">
 
         <h3>Commentaires : </h3>
@@ -52,6 +57,7 @@
 
 
     </div>
+
 
 
 
