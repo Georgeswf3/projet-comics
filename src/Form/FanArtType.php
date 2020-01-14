@@ -20,7 +20,6 @@ class FanArtType extends AbstractType
             ->add('fan_art_hook')
             ->add('fan_art_sketch', FileType::class, ['mapped' => false, 'required' => false])
             ->add('editor_id', EntityType::class, ['class' => Editor::class, 'choice_label' => 'editor_brand'])
-            ->add('isConfirmed')
             ->add('ajouter', SubmitType::class);
     }
 

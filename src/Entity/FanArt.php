@@ -68,6 +68,7 @@ class FanArt
     {
         $this->comments = new ArrayCollection();
         $this->editor_id = new ArrayCollection();
+        $this->setIsConfirmed(false);
     }
 
     public function getId(): ?int

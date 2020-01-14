@@ -9,6 +9,7 @@ use App\Entity\Editor;
 use App\Entity\FanArt;
 use App\Entity\Job;
 use App\Entity\Author;
+use App\Form\ArticleAdminType;
 use App\Form\ArticleType;
 use App\Form\AuthorType;
 use App\Form\EditorType;
@@ -45,7 +46,7 @@ class DashboardController extends AbstractController
     {
         $articles = $this->articleRepository->findBy(['id' => $id->getUserId()]);
         $user = $this->userRepository->findOneBy(['email' => $security->getUser()->getUsername()]);
-        //$articles = $this->articleRepository->findByUserId($id);
+
 
 
         return $this->render('home.html.twig', ["user" => $user, "article" => $articles]);
@@ -55,10 +56,21 @@ class DashboardController extends AbstractController
     {
         $slugger = new AsciiSlugger();
         $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
+        $isAdmin = in_array('ROLE_ADMIN',  $security->getUser()->getRoles());
+
+        if($isAdmin) {
+            $form = $this->createForm(ArticleAdminType::class, $article);
+        } else {
+            $form = $this->createForm(ArticleType::class, $article);
+        }
+
         $form->handleRequest($request);
+
         if($form->isSubmitted()){
             $article = $form->getData();
+            if($isAdmin) {
+                $article->setIsConfirmed(true);
+            }
             $actualTitle = $article->getArticleTitle();
             $slug = strtolower($slugger->slug($actualTitle));
             $article->setSlug($slug);
@@ -102,17 +114,21 @@ class DashboardController extends AbstractController
     {
         $slugger = new AsciiSlugger();
         $fanart = new FanArt();
-        $role = $this->userRepository->findOneBy(['roles' => $security->getUser()->getRoles()]);
+        $isAdmin = in_array('ROLE_ADMIN',  $security->getUser()->getRoles());
 
-        if($role['roles'] == ['ROLE_ADMIN']) {
+        if($isAdmin) {
             $form = $this->createForm(FanArtAdminType::class, $fanart);
         } else {
             $form = $this->createForm(FanArtType::class, $fanart);
         }
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted()){
             $fanart = $form->getData();
+            if($isAdmin) {
+                $fanart->setIsConfirmed(true);
+            }
             $actualTitle = $fanart->getFanArtTitle();
             $slug = strtolower($slugger->slug($actualTitle));
             $fanart->setSlug($slug);
