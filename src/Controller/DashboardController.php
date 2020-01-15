@@ -229,10 +229,6 @@ class DashboardController extends AbstractController
 
     }
 
-    public function editorsUpdate()
-    {
-    }
-
     public function jobsCreate(Request $request)
     {
         $job = new Job();
@@ -248,11 +244,6 @@ class DashboardController extends AbstractController
         return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
     }
 
-    public function jobsUpdate(Request $request)
-    {
-
-    }
-
     public function authorsCreate(Request $request)
     {
         $author = new Author();
@@ -266,10 +257,6 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute('dashboard_articles_create');
         }
         return $this->render('dashboard/pages/dashboard_create_authors.html.twig', ["authorForm" => $form->createView()]);
-    }
-
-    public function authorsUpdate()
-    {
     }
 
 }
