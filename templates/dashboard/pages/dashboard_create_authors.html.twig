@@ -13,15 +13,15 @@
 
                 {{ form_start(authorForm) }}
                     <div class="container mt-4">
-                        {{ form_row(authorForm.author_name, {'attr': {class : "form-control"}}) }}
-                        {{ form_row(authorForm.author_first_name, {'attr': {class : "form-control"}}) }}
-                        {{ form_row(authorForm.facebook_page, {'attr': {class : "form-control"}}) }}
-                        {{ form_row(authorForm.author_image, {'attr': {class : "form-control"}}) }}
-                        {{ form_row(authorForm.creation_image, {'attr': {class : "form-control"}}) }}
+                        {{ form_row(authorForm.author_name, {'label':'Nom de l\'artiste','attr': {class : "form-control"}}) }}
+                        {{ form_row(authorForm.author_first_name, {'label':'Prénom','attr': {class : "form-control"}}) }}
+                        {{ form_row(authorForm.facebook_page, {'label':'Page Facebook','attr': {class : "form-control"}}) }}
+                        {{ form_row(authorForm.author_image, {'label':'Image de l\'artiste','attr': {class : "form-control"}}) }}
+                        {{ form_row(authorForm.creation_image, {'label':'Dessin de l\'artiste','attr': {class : "form-control"}}) }}
                         <div class="row justify-content-around mt-3 mb-3">
                         {{ form_row(authorForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
                         </div>
-                        {{ form_row(authorForm.jobs, {'attr' : {class : "form-control", label : "Métier"}}) }}
+                        {{ form_row(authorForm.jobs, {'label':'Métiers','attr' : {class : "form-control", label : "Métier"}}) }}
                     </div>
                 {{ form_end(authorForm) }}
             </div>
