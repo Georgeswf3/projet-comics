@@ -37,32 +37,19 @@
         <div class="col-6 mt-3">
             {{ form_row(commentForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
         </div>
-
         {{ form_end(commentForm) }}
-
     </div>
 
-
     <div class="container formcomment mb-5 mt-5">
-
         <h3>Commentaires : </h3>
-
         {% for comment in comments %}
-
             <div>
                 {{ comment.commentFanArt }}
             </div>
-
             <div>
                 <p>Publié par {{ comment.userId.pseudo }}</p>
             </div>
         {% endfor %}
-
     </div>
-
-
-
-
-
 
 {% endblock %}
