@@ -112,7 +112,7 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
-            return $this->redirectToRoute('articles');
+            return $this->redirectToRoute('home');
         }
         return $this->render('dashboard/pages/dashboard_update_article.html.twig', ['articleUpdateForm' => $form->createView()]);
     }
