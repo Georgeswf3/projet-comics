@@ -51,7 +51,8 @@ class PublicController extends AbstractController
     {
         $from = $request->query->get("from");
         $articles = $this->articleRepo->findPaginatedArticle($from);
-        return $this->render('pages/articles.html.twig', ["articles" => $articles, "from" => $from]);
+        $authors = $this->authorRepo->findAll();
+        return $this->render('pages/articles.html.twig', ["articles" => $articles, "from" => $from, "authors"=>$authors]);
 
     }
 
