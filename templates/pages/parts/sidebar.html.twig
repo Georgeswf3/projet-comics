@@ -10,11 +10,21 @@
 
         <a href="{{ path('dashboard_fanArts_create', { id: app.user.id })}}">Créer un fan-art</a>
 
+        {%  for user in users %}
+            <li><a href="{{ path('user', {'id': 'user.id'}) }}">{{ user.pseudo }}</a></li>
+        {% endfor %}
     {% else %}
 
         <a href="{{ path('dashboard_articles_create', {id: app.user.id}) }}">Créer un article</a>
 
+        {% for author in authors %}
+            <li><a href="{{ path('author', {'id': 'author.id'}) }}">{{ author.authorName }}</a></li>
+
+        {% endfor %}
+
     {% endif %}
 
     {% endif %}
+
+
 </div>
