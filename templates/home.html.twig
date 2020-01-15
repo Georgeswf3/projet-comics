@@ -8,23 +8,20 @@
 
     {% if app.user %}
         <div class="profil">
-        <h4 class="centrer">{{ app.user.pseudo }}</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <img src="{{ app.user.avatarImage }}" alt="">
-                </div>
-                <div class="col-6">
-                    <ul>
-                        <li>Nom: {{ app.user.lastName }}</li>
-                        <li>Prénom: {{ app.user.firstName }}</li>
-                    </ul>
+            <h4 class="centrer">{{ app.user.pseudo }}</h4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ app.user.avatarImage }}" alt="">
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Nom: {{ app.user.lastName }}</li>
+                            <li>Prénom: {{ app.user.firstName }}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            {#{% if article.userId == app.user %}
-                <p><a href="{{ path('article', {'slug': app.user.id}) }}">{{ article.articleTitle }}</a></p>
-            {% endif %}#}
-        </div>
         </div>
     {% endif %}
 
