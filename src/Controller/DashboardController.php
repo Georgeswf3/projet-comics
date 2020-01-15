@@ -164,16 +164,16 @@ class DashboardController extends AbstractController
         $isAdmin = in_array('ROLE_ADMIN',  $security->getUser()->getRoles());
 
         if($isAdmin) {
-            $form = $this->createForm(FanArtAdminType::class, $fanart);
+            $form = $this->createForm(FanArtAdminType::class, $fanArt);
         } else {
-            $form = $this->createForm(FanArtType::class, $fanart);
+            $form = $this->createForm(FanArtType::class, $fanArt);
         }
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $fanArt = $form->getData();
             if($isAdmin) {
-                $fanart->setIsConfirmed(true);
+                $fanArt->setIsConfirmed(true);
             }
             $actualTitle = $fanArt->getFanArtTitle();
             $slug = strtolower($slugger->slug($actualTitle));
@@ -229,10 +229,6 @@ class DashboardController extends AbstractController
 
     }
 
-    public function editorsUpdate()
-    {
-    }
-
     public function jobsCreate(Request $request)
     {
         $job = new Job();
@@ -248,11 +244,6 @@ class DashboardController extends AbstractController
         return $this->render("dashboard/pages/dashboard_create_job.html.twig", ["jobForm" => $form->createView()]);
     }
 
-    public function jobsUpdate(Request $request)
-    {
-
-    }
-
     public function authorsCreate(Request $request)
     {
         $author = new Author();
@@ -266,10 +257,6 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute('dashboard_articles_create');
         }
         return $this->render('dashboard/pages/dashboard_create_authors.html.twig', ["authorForm" => $form->createView()]);
-    }
-
-    public function authorsUpdate()
-    {
     }
 
 }

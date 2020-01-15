@@ -8,16 +8,16 @@
     <div class="container-fluid">
         <div class="authorname">
             <div class="col-12">
-                <p id="authorname">{{ author.authorFirstName }} {{ author.authorName }}</p>
+                <p id="authorname"> {{ author.authorFirstName }} {{ author.authorName }} </p>
                 <p id="authorname">Facebook page: {{ author.facebookPage }}</p>
             </div>
         </div>
     </div>
     <div class="container authorimg">
-        <img src="{{ author.authorImage }}" height= 350px alt="image de l'artiste">
+        <img src="/uploads/images/{{ author.authorImage }}" height= 350px alt="image de l'artiste">
     </div>
     <div class="container authorart">
-        <img src="{{ author.creationImage }}" height= 350px alt="dessin de l'artiste">
+        <img src="/uploads/images/{{ author.creationImage }}" height= 350px alt="dessin de l'artiste">
     </div>
 
 {% endblock %}

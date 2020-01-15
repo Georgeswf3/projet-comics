@@ -14,7 +14,6 @@ class CommentArticleType extends AbstractType
     {
         $builder
             ->add('comment_article')
-            ->add('isConfirmed')
             ->add('valider', SubmitType::class)
         ;
     }

@@ -14,7 +14,6 @@ class CommentFanArtType extends AbstractType
     {
         $builder
             ->add('comment_fan_art')
-            ->add('isConfirmed')
             ->add('ajouter', SubmitType::class)
         ;
     }
