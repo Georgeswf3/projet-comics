@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% block styleFanArts %}
+        <link rel="stylesheet" href="{{ asset ("styles/home.styles.css")}}">
+    {% endblock %}
 
-<p>{{ author.authorName }}</p>
-    <p>{{ author.authorFirstName }}</p>
-    <img src="{{ author.authorImage }}" alt="">
-    <p>{{ author.facebookPage }}</p>
-    
-
-
-
+    <div class="container-fluid">
+        <div class=" authorname">
+            <div class="col-12">
+                <p col>{{ author.authorFirstName }} {{ author.authorName }}</p>
+                <p col>Facebook page: {{ author.facebookPage }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container authorimg">
+        <img src="{{ author.authorImage }}" height= 350px alt="image de l'artiste">
+    </div>
+    <div class="container authorart">
+        <img src="{{ author.creationImage }}" height= 350px alt="dessin de l'artiste">
+    </div>
 
 {% endblock %}
