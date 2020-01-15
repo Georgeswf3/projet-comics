@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <h1 class="mt-5">Créer un fan-art : </h1>
 
     <div class="container align-items-center mt-5 mb-5">
         <div class="row justify-content-center">
@@ -13,7 +14,7 @@
 
                 {{ form_start(FanArtForm) }}
                 <div class="container mt-4">
-                    {{ form_row(FanArtForm.fan_art_title, {'attr': {class : "form-control"}}) }}    
+                    {{ form_row(FanArtForm.fan_art_title, {'attr': {class : "form-control"}}) }}
                     {{ form_row(FanArtForm.fan_art_sketch, {'attr': {class : "form-control"}}) }}
                     {{ form_row(FanArtForm.fan_art_hook, {'attr': {class : "form-control"}}) }}
                     {{ form_row(FanArtForm.editor_id, {'attr': {class : "form-control", label : "Editeur"}}) }}
@@ -23,6 +24,7 @@
                 </div>
                 {{ form_end(FanArtForm) }}
             </div>
+
         </div>
     </div>
 

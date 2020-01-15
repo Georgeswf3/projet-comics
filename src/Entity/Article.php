@@ -66,6 +66,7 @@ class Article
         $this->authors = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->setArticleDate(new DateTime());
+        $this->setIsConfirmed(false);
     }
 
     public function getId(): ?int
