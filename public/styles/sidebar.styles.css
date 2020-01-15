@@ -1,16 +1,16 @@
 .sideBar{
     font-family: 'Lilita One', cursive;
-    background-color: #114674;
     font-size:18px;
+    background: #FFFFFF;
 }
 
 .sideBar a{
-    color: #66ace9;
+    color: #FFFFFF;
     margin-left:20px;
 }
 
 .sideBar a:hover{
     text-decoration:none;
-    color:white;
+    color: #114674;
     transition-duration: 0.5s;
 }

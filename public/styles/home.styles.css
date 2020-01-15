@@ -190,8 +190,28 @@ header{
     bottom:1px;
     transition-duration:0.5s;
 }
-p{
+p,
+h1, h2, h3{
     font-family: 'Roboto Condensed', sans-serif;
 }
-
-
+/*** user profile ***/
+.profil{
+    text-align: center;
+    color: #5eb5e0;
+}
+li{
+    list-style-type: none;
+    text-align: center;
+}
+/*** page fanArt ***/
+.fanarttitle,
+.fanarthook{
+    color: #5eb5e0;
+    text-align: center;
+}
+.fanartimg{
+    text-align: center;
+}
+.formcomment{
+    color: #5eb5e0;
+}
