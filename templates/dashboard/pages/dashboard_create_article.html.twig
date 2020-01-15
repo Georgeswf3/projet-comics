@@ -13,14 +13,11 @@
 
                 {{ form_start(articleForm) }}
                 <div class="form-group mt-4">
-                    {{ form_row(articleForm.article_title, {'attr': {class : "form-control"}}) }}
-                    {{ form_row(articleForm.authors, {'attr': {class : "form-control"}}) }}
-                    {{ form_row(articleForm.article_text, {'attr': {class : "form-control"}}) }}
+                    {{ form_row(articleForm.article_title, {'label':'Titre de l\'article','attr': {class : "form-control"}}) }}
+                    {{ form_row(articleForm.authors, {'label':'Choisir un artiste','attr': {class : "form-control"}}) }}
+                    {{ form_row(articleForm.article_text, {'label':'Saisissez votre texte','attr': {class : "form-control"}}) }}
                     <div class="row justify-content-around mt-3 mb-3">
                         {{ form_row(articleForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
-                    </div>
-                    <div class="row ">
-                        {{ form_row(articleForm.article_date) }}
                     </div>
                 </div>
                 {{ form_end(articleForm) }}
