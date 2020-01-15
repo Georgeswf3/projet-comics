@@ -8,20 +8,20 @@
     <div class="container-fluid">
         <div>
             <div class="col-12">
-
-                {% for user in user %}
                     
                 <p>{{ user.pseudo }}</p>
-                {% endfor %}
 
             </div>
         </div>
     </div>
 
+    
+
     {% for fanart in fanarts  %}
 
-        <img src="{{ fanart.fanArtSketch }}" alt="">
-    
+        <p>{{ fanart.fanArtTitle }}</p>
+        <img src="/uploads/images/{{ fanart.fanArtSketch }}" alt="">
+
     {% endfor %}
 
 {% endblock %}

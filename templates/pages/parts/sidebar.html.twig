@@ -11,7 +11,7 @@
         <a href="{{ path('dashboard_fanArts_create', { id: app.user.id })}}">Créer un fan-art</a>
 
         {%  for user in users %}
-            <li><a href="{{ path('user', {'id': 'user.id'}) }}">{{ user.pseudo }}</a></li>
+            <li><a href="{{ path('user', {id: user.id}) }}">{{ user.pseudo }}</a></li>
         {% endfor %}
     {% else %}
 

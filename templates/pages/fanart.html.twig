@@ -7,7 +7,7 @@
        <h1 class="mb-5">{{ fanArt.fanArtTitle }}</h1>
     </div>
     <div class="fanartimg">
-        <img src="{{ fanArt.fanArtSketch }}" alt="Sketch Fan-Art">
+        <img src="/uploads/images/{{ fanArt.fanArtSketch }}" alt="Sketch Fan-Art">
     </div>
         <div class="fanarthook">
         <h3 class="mb-5">{{ fanArt.fanArtHook }}</h3>
@@ -29,11 +29,6 @@
         <div class="col-12 mt-3">
             {{ form_row(commentForm.comment_fan_art, {'attr': {class : "form-control"}}) }}
         </div>
-
-        <div class="col-2 mt-3">
-            {{ form_row(commentForm.isConfirmed, {'attr': {class : "form-control"}}) }}
-        </div>
-
         <div class="col-6 mt-3">
             {{ form_row(commentForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
         </div>

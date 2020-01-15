@@ -17,7 +17,7 @@
                         <div class="col-md-4 p-2">
                             <div class="elements">
                                 <p>{{ fanArt.fanArtTitle }}</p>
-                                <img src="{{ fanArt.fanArtSketch }}" alt="">
+                                <img src="/uploads/images/{{ fanArt.fanArtSketch }}" alt="">
                                 <div class="text">
                                     <p>{{ fanArt.fanArtHook|length > 30 ? fanArt.fanArtHook|slice(0, 30) ~ '...' : fanArt.fanArtHook }}</p>
                                 </div>

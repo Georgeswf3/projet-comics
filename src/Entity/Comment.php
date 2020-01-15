@@ -48,6 +48,11 @@ class Comment
      */
     private $isConfirmed;
 
+    public function __construct()
+    {
+        $this->setIsConfirmed(true);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

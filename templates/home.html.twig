@@ -12,12 +12,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-3">
-                        <img src="{{ app.user.avatarImage }}" alt="">
+                        <img src="/uploads/images/{{ app.user.avatarImage }}" alt="" height="350px">
                     </div>
                     <div class="col-6">
                         <ul>
                             <li>Nom: {{ app.user.lastName }}</li>
                             <li>Prénom: {{ app.user.firstName }}</li>
+                            <li><a href="{{ path('home', {id: app.user.id}) }}">Voir mes fanArts</a></li>
                         </ul>
                     </div>
                 </div>
