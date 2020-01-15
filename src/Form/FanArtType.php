@@ -23,7 +23,6 @@ class FanArtType extends AbstractType
                 'choice_label' => 'editor_brand',
                 'multiple'=>true,
                 'expanded'=>true])
-            ->add('isConfirmed')
             ->add('ajouter', SubmitType::class);
     }
 

@@ -23,7 +23,6 @@ class ArticleType extends AbstractType
                     'expanded'=>true,
                 ])
             ->add('article_text')
-            ->add('article_date')
             ->add('ajouter', SubmitType::class)
         ;
     }

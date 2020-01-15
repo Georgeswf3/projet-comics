@@ -23,7 +23,6 @@ class ArticleAdminType extends AbstractType
                     'expanded'=>true,
                 ])
             ->add('article_text')
-            ->add('article_date')
             ->add('isConfirmed')
             ->add('ajouter', SubmitType::class)
         ;
