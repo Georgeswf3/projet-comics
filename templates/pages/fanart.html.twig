@@ -16,7 +16,7 @@
 
     <div class="col mt-3" style="text-align: center">
         {% if app.user %}
-        <button class="btn btn-light btn-link"><a href="{{ path('dashboard_fanArts_update', {'id': app.user.id}) }}">Mettre à jour</a></button>
+        <button class="btn btn-light btn-link"><a href="{{ path('dashboard_fanArts_update', {'slug': fanArt.slug}) }}">Mettre à jour</a></button>
         {% endif %}
     </div>
 

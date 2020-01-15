@@ -87,10 +87,10 @@ class DashboardController extends AbstractController
         return $this->render("dashboard/pages/dashboard_create_article.html.twig", ["articleForm" => $form->createView(), "article" => $article]);
     }
 
-    public function articleUpdate(Request $request,Security $security, $id)
+    public function articleUpdate(Request $request,Security $security, $slug)
     {
         $slugger = new AsciiSlugger();
-        $article = $this->articleRepository->find($id);
+        $article = $this->articleRepository->findOneBy(["slug"=>$slug]);
         $isAdmin = in_array('ROLE_ADMIN',  $security->getUser()->getRoles());
 
         if($isAdmin) {
@@ -157,10 +157,10 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/pages/dashboard_create_fanArt.html.twig',['FanArtForm' =>$form->createView()]);
     }
 
-    public function fanArtsUpdate(Request $request, Security $security, $id)
+    public function fanArtsUpdate(Request $request, Security $security, $slug)
     {
         $slugger = new AsciiSlugger();
-        $fanArt = $this->fanArtRepository->find($id);
+        $fanArt = $this->fanArtRepository->findOneBy(["slug"=>$slug]);
         $isAdmin = in_array('ROLE_ADMIN',  $security->getUser()->getRoles());
 
         if($isAdmin) {

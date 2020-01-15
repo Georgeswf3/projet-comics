@@ -51,7 +51,7 @@ dashboard_articles_create:
   controller: App\Controller\DashboardController::articleCreate
 
 dashboard_articles_update:
-  path: /dashboard/articles/update/{id}
+  path: /dashboard/articles/update/{slug}
   controller: App\Controller\DashboardController::articleUpdate
 
 dashboard_fanArts_create:
@@ -59,7 +59,7 @@ dashboard_fanArts_create:
   controller: App\Controller\DashboardController::fanArtsCreate
 
 dashboard_fanArts_update:
-  path: /dashboard/fanArts/update/{id}
+  path: /dashboard/fanArts/update/{slug}
   controller: App\Controller\DashboardController::fanArtsUpdate
 
 dashboard_user_update:
