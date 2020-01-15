@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class ArticleAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,6 +23,7 @@ class ArticleType extends AbstractType
                     'expanded'=>true,
                 ])
             ->add('article_text')
+            ->add('isConfirmed')
             ->add('ajouter', SubmitType::class)
         ;
     }

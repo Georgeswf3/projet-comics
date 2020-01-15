@@ -55,7 +55,7 @@ class FanArt
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Editor", inversedBy="fanArts")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Editor", mappedBy="fanArts")
      */
     private $editor_id;
 
@@ -68,6 +68,7 @@ class FanArt
     {
         $this->comments = new ArrayCollection();
         $this->editor_id = new ArrayCollection();
+        $this->setIsConfirmed(false);
     }
 
     public function getId(): ?int

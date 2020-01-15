@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FanArtType extends AbstractType
+class FanArtAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,7 +23,9 @@ class FanArtType extends AbstractType
                 'choice_label' => 'editor_brand',
                 'multiple'=>true,
                 'expanded'=>true])
+            ->add('isConfirmed')
             ->add('ajouter', SubmitType::class);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
