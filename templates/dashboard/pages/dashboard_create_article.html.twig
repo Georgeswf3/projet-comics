@@ -1,36 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% block styleCreateFanArt %}
+    <link rel="stylesheet" href="{{ asset ("styles/create-fanart.styles.css")}}">
+{% endblock %}
+
 {% block body %}
-    <h1 class="mt-5">Créer un article : </h1>
 
-    {{ dump(article) }}
+    <div class="container align-items-center mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-sm-9 contenu">
+                <h1 class="mt-5">Créer un article : </h1>
 
-    {{ form_start(articleForm) }}
-    <div class="form-group mt-5">
-        <div class="row">
-            <div class="col-12 mt-5">
-                {{ form_row(articleForm.article_title, {'attr': {class : "form-control"}}) }}
+                {{ form_start(articleForm) }}
+                <div class="form-group mt-4">
+                    {{ form_row(articleForm.article_title, {'attr': {class : "form-control"}}) }}
+                    {{ form_row(articleForm.authors, {'attr': {class : "form-control"}}) }}
+                    {{ form_row(articleForm.article_text, {'attr': {class : "form-control"}}) }}
+                    <div class="row justify-content-around mt-3 mb-3">
+                        {{ form_row(articleForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
+                    </div>
+                    <div class="row ">
+                        {{ form_row(articleForm.article_date) }}
+                    </div>
+                </div>
+                {{ form_end(articleForm) }}
             </div>
-            <div class="col-12 mt-5">
-                {{ form_row(articleForm.authors, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-12 mt-5">
-                {{ form_row(articleForm.article_text, {'attr': {class : "form-control"}}) }}
-            </div>
-
-            <div class="col-12 mt-5">
-                {{ form_row(articleForm.isConfirmed, {'attr': {class : "form-control"}}) }}
-            </div>
-            <div class="col-12 mt-5">
-                {{ form_row(articleForm.ajouter, {'attr' : {class : "btn btn-primary"}}) }}
-            </div>
-
         </div>
     </div>
 
-
-    {{ form_end(articleForm) }}
-
-<button><a href="{{ path('dashboard_authors_create') }}">Créer un auteur</a></button>
+    <button><a href="{{ path('dashboard_authors_create') }}">Créer un auteur</a></button>
 
 {% endblock %}

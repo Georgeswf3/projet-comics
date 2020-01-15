@@ -2,24 +2,27 @@
 
 {% block body %}
     <div class="container mb-5 mt-5">
-        <h1 class="mb-5">{{ article.articleTitle }}</h1>
-
-        <h3 class="mb-5">{{ article.articleText }}</h3>
+        <div class="articletitle">
+            <h1 class="mb-5">{{ article.articleTitle }}</h1>
+        </div>
+        <div class="articletext">
+            <h3 class="mb-5">{{ article.articleText }}</h3>
+        </div>
     </div>
 
-    <div class="col mt-3">
+    <div class="col mt-3" style="text-align: center">
             {%  for author in article.authors %}
                 <a href="{{ path('author', {id : author.id}) }}">  <p>{{ author.authorName }}</p></a>
             {% endfor %}
   {#      <button><a href="{{ path('author', {id : }) }}">Voir l'auteur</a></button>#}
 
     {% if app.user %}
-        <button class="btn btn-link"><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
+        <button class="btn btn-light btn-link"><a href="{{ path('dashboard_articles_update', {id : app.user.id}) }}">Modifier</a></button>
     {% endif %}
 
     </div>
 
-    <div class="container mb-5 mt-5">
+    <div class="container formcomment mb-5 mt-5">
 
         <h3>Ajouter un commentaire : </h3>
 
@@ -34,13 +37,12 @@
                 <div class="col-6 mt-3">
                     {{ form_row(commentForm.valider, {'attr' : {class : "btn btn-primary"}}) }}
                 </div>
-            </div>
-        </div>
         {{ form_end(commentForm) }}
     </div>
 
 
-    <div class="container mb-5 mt-5">
+
+    <div class="container formcomment mb-5 mt-5">
 
         <h3>Commentaires : </h3>
 
