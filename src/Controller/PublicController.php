@@ -65,7 +65,7 @@ class PublicController extends AbstractController
     }
 
     public function user($id){
-        $user = $this ->userRepo->findOneBy(["id" => $id]);
+        $user = $this ->userRepo->findOneBy(["id"=>$id]);
         $fanart = $this ->fanArtRepo->findAll();
 
         return $this->render('pages/user.html.twig', ['user'=>$user, 'fanarts'=>$fanart]);
